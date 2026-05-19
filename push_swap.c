@@ -6,21 +6,22 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/19 19:11:37 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/19 21:46:20 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+#include <assert.h>
 
 int get_complexity(char *arg)
 {
-    if(ft_strncmp(arg, "--simple", ft_strlen(arg) == OK))
+    if(ft_strncmp(arg, "--simple", ft_strlen_longest("--simple", arg)) == OK)
         return (SIMPLE);
-    else if (ft_strncmp(arg, "--medium", ft_strlen(arg) == OK))
+    else if (ft_strncmp(arg, "--medium", ft_strlen_longest("--medium", arg)) == OK)
         return (MEDIUM);
-    else if (ft_strncmp(arg, "--complex", ft_strlen(arg) == OK))
+    else if (ft_strncmp(arg, "--complex", ft_strlen_longest("--complex", arg)) == OK)
         return (COMPLEX);
-    else if (ft_strncmp(arg, "--adaptive", ft_strlen(arg) == OK))
+    else if (ft_strncmp(arg, "--adaptive", ft_strlen_longest("--adaptive", arg)) == OK)
         return (ADAPTATIVE);
     return (NONE);
 }

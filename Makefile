@@ -15,9 +15,9 @@ $(NAME): $(SRCS_OBJS)
 	$(CC) $(CFLAGS) $(SRCS_OBJS) -Llibft -lft -o $(NAME)
 
 as: $(ASSERT_OBJS)
-	make -C $(LIBFT)
-	$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llibft -lft -o $(NAME_ASSER)
-	./$(NAME_ASSER)
+	@make -C $(LIBFT)
+	@$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llibft -lft -o $(NAME_ASSER)
+	@./$(NAME_ASSER)
 
 clean:
 	rm -rf $(SRCS_OBJS) $(ASSERT_OBJS)
