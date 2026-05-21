@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 08:30:57 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 08:59:05 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void init_stack_assert(void)
     split[5] = NULL;
     assert(check_args(split, &data) == OK);
     assert(data.size_a !=  ERR);
-    assert(create_stack(&split[1], &data) == OK);
+    assert(create_stack(&split[0], &data) == OK);
     assert(data.stack);
     data.a = data.stack;
     data.b = NULL;
@@ -236,24 +236,19 @@ void check_dupplicate_assert(void)
 void init_data_assert(char **argv)
 {
     ASSERT_START(__func__);
-    int fd;
-    int b_read;
     t_data data;
-    char buffer[1024];
     char **split;
-
-    fd = open("assertion/v.txt", O_RDONLY);
-    assert(fd > 0);
-    b_read = read(fd, buffer, 1023);
-    assert(b_read > 0);
-    close(fd);
-    buffer[b_read] = '\0';
-    split  = ft_split(buffer, SPACE);
+    int split_len;
+    
+    split  = ft_split(argv[0], SPACE);
     assert(init_data(argv, &data) == OK);
     assert(data.a == data.stack);
-    assert(data.algo == SIMPLE);
     assert(data.b == NULL);
-    assert(data.size_a == (int)ft_split_len(split) - 1);
+    if(data.algo == NONE)
+        split_len = (int)ft_split_len(split);
+    else
+        split_len = (int)ft_split_len(split) - 1;
+    assert(data.size_a == split_len);
     ft_split_clean(&split);
     ASSERT_END(__func__);
 }
@@ -262,12 +257,12 @@ int main(int argc, char **argv)
 {
     (void)argc;
     (void)argv;
-    // check_digit_assert();
-    // get_complexity_assert();
-    // atoi_long_long_assert();
-    //check_arg_assert();
-    //init_stack_assert();
-    //check_dupplicate_assert();
+    check_digit_assert();
+    get_complexity_assert();
+    atoi_long_long_assert();
+    check_arg_assert();
+    init_stack_assert();
+    check_dupplicate_assert();
     init_data_assert(&argv[1]);
 
     

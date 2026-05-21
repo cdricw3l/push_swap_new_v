@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 08:49:39 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 08:51:09 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ int init_data(char **argv, t_data *data)
         write(STDOUT_FILENO,"Error check arg\n", 16);
         return (ERR);
     }
-    assert(data->algo == SIMPLE);
     if (create_stack(argv, data) == ERR)
     {
         write(STDOUT_FILENO,"Error stack creation\n", 21);
