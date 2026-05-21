@@ -44,11 +44,9 @@ git: copy fclean
 	git commit -m $(COM)
 	git push origin $(shell git branch --show-current)
 
-libft:
-	rm -rf lib/*
-	make -C $(LIBFT)
-	cp $(LIBFT)/libft.* lib/.
-	make clean -C $(LIBFT)
+lib:
+	make fclean -C $(LIBFT)
+#make -C $(LIBFT)
 
 copy:
 	mv .git ../. && mv Makefile ../.

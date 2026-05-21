@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assertion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 18:29:49 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 19:08:23 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,7 +348,7 @@ void rev_rotate_assert(void)
         tmp = *data.a;
         assert(rev_rotate(&data, STACK_A) == OK);
         display_stack(&data, STACK_A);
-        assert(*(data.a + data.size_a) == tmp);
+        assert(*(data.a + 1) == tmp);
         i++;
     }
     NL;
@@ -406,6 +406,7 @@ void rotate_assert(void)
         i++;
     }
     assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
+    printf("here\n");
     
     ASSERT_END(__func__);
 }
