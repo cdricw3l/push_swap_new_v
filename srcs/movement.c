@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 14:17:53 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 14:47:24 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,6 @@ int push(t_data *data, int src, int dst)
     return (NO_MOVE);
 }
 
-void ft_swap(int *p1, int *p2)
-{
-    int tmp;
-
-    tmp = *p1;
-    *p1 = *p2;
-    *p2 = tmp;
-}
-
 int swap(t_data *data, int stack)
 {
     int *arr;
@@ -113,6 +104,7 @@ int swap(t_data *data, int stack)
 
     if (!data)
         return (NO_MOVE);
+    /* this else else if else define with wich array we work */
     if (stack == STACK_A)
     {
         arr = data->a;
@@ -125,8 +117,13 @@ int swap(t_data *data, int stack)
     }
     else
         return (NO_MOVE);
+    /* swap only if target arr len > 2 */
     if (arr && len > 1)
     {
+        /* 
+            if stack_A swap pointer a and a + 1  
+            if stack B swap pointer b and b - 1
+        */
         if (stack == STACK_A)
             ft_swap(data->a, data->a + 1);
         else if(stack == STACK_B)
@@ -136,3 +133,34 @@ int swap(t_data *data, int stack)
         return (NO_MOVE);
     return (OK);
 }
+
+int rr(t_data *data, int stack)
+{
+    int *arr;
+    int len;
+    int tmp;
+
+    (void)arr;
+    (void)len;
+    if (stack == STACK_A)
+    {
+        arr = data->a;
+        len = data->size_a;
+        tmp = *(data->a);
+        ft_memmove(data->a + 1, data->a, data->size_a - 1);
+        *(data->a) = tmp;
+
+    }
+    else if (stack == STACK_B)
+    {
+        arr = data->b;
+        len = data->size_b;
+        tmp = *(data->b - data->size_b);
+        ft_memmove(data->b - 1, data->b, data->size_b - 1);
+        *(data->b) = tmp;
+    }
+    else
+        return (NO_MOVE);
+    return (OK);    
+}
+

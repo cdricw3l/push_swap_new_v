@@ -2,12 +2,14 @@ NAME=push_swap
 NAME_ASSER=assertion/push_swap_assert
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror
-SRCS=push_swap.c main.c
-SRCS_ASSERT= assertion/assertion.c push_swap.c 
+SRCS=srcs/push_swap.c srcs/main.c
+SRCS_ASSERT= assertion/assertion.c srcs/push_swap.c srcs/movement.c srcs/utils.c
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
-LIBFT=../libft
+LIBFT=lib
 VALGRIND_LOG=valgrind.log
+OS=$(shell uname)
+
 all: $(NAME)
 
 $(NAME): $(SRCS_OBJS)
@@ -21,8 +23,12 @@ ARG2="10 -1 32 45 7 89 -23 56 0 14 67 -45 23 9 100 -12 38 72 -8 5 91 -34   60 11
 as: $(ASSERT_OBJS)
 	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llib -lft -o $(NAME_ASSER)
+ifeq ($(shell uname), Darwin)
+	leaks -q  -atExit -- ./$(NAME_ASSER) $(ARG1)
+endif
+ifeq ($(OS), Linux)
 	@valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG1)
-
+endif
 clean:
 	rm -rf $(SRCS_OBJS) $(ASSERT_OBJS) $(VALGRIND_LOG)
 

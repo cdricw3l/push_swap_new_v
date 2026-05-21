@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assertion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 14:18:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 14:46:34 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void check_arg_assert(void)
 void init_stack_assert(void)
 {
     ASSERT_START(__func__);
-    int i;
     char **split;
     t_data data;
 
@@ -152,7 +151,6 @@ void init_stack_assert(void)
     assert(data.stack);
     data.a = data.stack;
     data.b = NULL;
-    i = 0;
     assert(*(data.a) == 10);
     assert(data.stack[data.size_a - 1] == 0);
     assert(data.stack[data.size_a - 2] == INT_MAX);
@@ -165,7 +163,6 @@ void init_stack_assert(void)
 void check_dupplicate_assert(void)
 {
     ASSERT_START(__func__);
-    int i;
     char **split;
     t_data data;
 
@@ -192,7 +189,6 @@ void check_dupplicate_assert(void)
         assert(create_stack(&split[1], &data) == OK);
     data.a = data.stack;
     data.b = NULL;
-    i = 0;
     /* check value copy in stack.data */
     assert(*(data.a + 1) == 10);
     assert(data.stack[data.size_a - 1] == 0);
@@ -224,7 +220,6 @@ void check_dupplicate_assert(void)
         assert(create_stack(&split[1], &data) == OK);
     data.a = data.stack;
     data.b = NULL;
-    i = 0;
     /* check value copy in stack.data */
     assert(*(data.a + 1) == 30);
     assert(data.stack[data.size_a - 1] == 64);
@@ -267,7 +262,6 @@ void push_assert(void)
     
     while (data.size_a > 0)
     {
-        
         status = push(&data, STACK_A, STACK_B);
         display_stack(&data, STACK_B);
         display_stack(&data, STACK_A);
@@ -324,6 +318,20 @@ void swap_assert(void)
     assert(*(data.a) == 10);
     assert(swap(&data, STACK_B) ==  NO_MOVE);
     ASSERT_END(__func__);
+}
+
+void rr_assert(void)
+{
+    t_data data;
+    int arr[] = {10, 22, 1101, 7, 12, 32};
+
+    data.a = &arr[3];
+    data.b = &arr[2];
+    data.size_a = 3;
+    data.size_b = 3;
+
+    display_stack(&data, STACK_A);
+    display_stack(&data, STACK_B);
 }
 
 int main(int argc, char **argv)
