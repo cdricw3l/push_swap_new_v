@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 11:33:52 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 13:44:38 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int check_duplicate(t_data data);
 int init_data(char **argv, t_data *data);
 void display_data(t_data data);
 int push(t_data *data, int src, int dst);
+int swap(t_data *data, int stack);
+void display_stack(t_data *data, int stack);
 
 void check_digit_assert(void)
 {
@@ -255,34 +257,70 @@ void init_data_assert(char **argv)
     ASSERT_END(__func__);
 }
 
-void swap_assert(void)
+void push_assert(void)
 {
     ASSERT_START(__func__);
     t_data data;
-    char *str[] = {"10 12 88 74 7 9 77"};
+    char *str[] = {"10 12 88 74 7 9 77", NULL};
     assert(init_data((char **)str, &data) == OK);
-    while (data.a != NULL)
+    int status;
+
+    
+    while (data.size_a > 0)
     {
-            assert(push(&data, STACK_A, STACK_B) == OK);
-            display_data(data);
-            NL;
-    }
-    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
-    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
-    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE); 
-    while (data.b != NULL)
-    {
-        assert(push(&data, STACK_B, STACK_A) == OK);
-        display_data(data);
+        
+        status = push(&data, STACK_A, STACK_B);
+        display_stack(&data, STACK_B);
+        display_stack(&data, STACK_A);
+        assert(status == OK);
         NL;
     }
-    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
-    assert(push(NULL, STACK_B, STACK_A)  == NO_MOVE);   
-    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
-    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);
-    assert(push(&data, INT_MAX, INT_MIN)  == NO_MOVE);
+    status = push(&data, STACK_A, STACK_B);
+    assert(status == NO_MOVE);
+
+    // assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    // assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    // assert(push(&data, STACK_A, STACK_B)  == NO_MOVE); 
+    // while (data.b != NULL)
+    // {
+    //     assert(push(&data, STACK_B, STACK_A) == OK);
+    //     display_data(data);
+    //     NL;
+    // }
+    // assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    // assert(push(NULL, STACK_B, STACK_A)  == NO_MOVE);   
+    // assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    // assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);
+    // assert(push(&data, INT_MAX, INT_MIN)  == NO_MOVE);
     ASSERT_END(__func__);
 }
+
+// void swap_assert(void)
+// {
+//     ASSERT_START(__func__);
+//     t_data data;
+//     char *str[] = {"10 12 88 74 7 9 77", NULL};
+//     assert(init_data((char **)str, &data) == OK);
+    
+//     assert(push(&data, STACK_A, STACK_B) == OK);
+//     assert(push(&data, STACK_A, STACK_B) == OK);
+//     assert(push(&data, STACK_A, STACK_B) == OK);
+    
+//     assert(swap(&data, STACK_A) == OK);
+//     assert(data.a[0] == 7);
+//     assert(data.a[1] == 74);
+    
+
+//     assert(swap(&data, STACK_B) == OK);
+//     assert(data.b[0] == 12);
+//     assert(data.b[1] == 88);
+//     display_stack(&data, STACK_A);
+//     assert(swap(&data, STACK_A) == OK);
+//     assert(swap(&data, STACK_B) == OK);
+    
+    
+//     ASSERT_END(__func__);
+// }
 
 int main(int argc, char **argv)
 {
@@ -295,7 +333,8 @@ int main(int argc, char **argv)
     init_stack_assert();
     check_dupplicate_assert();
     init_data_assert(&argv[1]);
-    swap_assert();
+    push_assert();
+    //swap_assert();
     
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 11:06:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:23:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #define STACK_A 0
 #define STACK_B 1
 #define NO_MOVE 1
+#define NL printf("\n")
 
 enum e_algo
 {
