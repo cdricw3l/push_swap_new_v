@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 17:35:53 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 18:04:26 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,7 @@ void rev_rotate_assert(void)
     while (i < data.size_a)
     {
         tmp = *data.a;
-        rev_rotate(&data, STACK_A);
+        assert(rev_rotate(&data, STACK_A) == OK);
         display_stack(&data, STACK_A);
         assert(*(data.a + 1) == tmp);
         i++;
@@ -358,7 +358,7 @@ void rev_rotate_assert(void)
     while (i < data.size_b)
     {
         tmp = *data.b;
-        rev_rotate(&data, STACK_B);
+        assert(rev_rotate(&data, STACK_B) == OK);
         display_stack(&data, STACK_B);
         assert(*(data.b - 1) == tmp);
         i++;
@@ -378,6 +378,8 @@ void rotate_assert(void)
     ASSERT_START(__func__);
     t_data data;
     int arr[] = {10, 22, 1101, 7, 12, 32};
+    int i;
+    int tmp;
 
     data.a = &arr[3];
     data.b = &arr[2];
@@ -386,15 +388,24 @@ void rotate_assert(void)
     data.size_a = 3;
     data.size_b = 3;
 
-    NL;
-    display_stack(&data, STACK_A);
-    rotate(&data, STACK_A);
-    display_stack(&data, STACK_A);
-    NL;
-    display_stack(&data, STACK_B);
-    rotate(&data, STACK_B);
-    display_stack(&data, STACK_B);
-    NL;
+    i = 0;
+    while (i < data.size_a)
+    {
+        tmp = data.a[1];
+        rotate(&data,  STACK_A);
+        assert(data.a[0] == tmp);
+        i++;
+    }
+    assert(*data.a == 7 && *(data.a + 1) == 12 && *(data.a + 2) == 32);
+    i = 0;
+    while (i < data.size_b)
+    {
+        tmp = *(data.b - 1);
+        rotate(&data,  STACK_B);
+        assert(*data.b == tmp);
+        i++;
+    }
+    assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
     
     ASSERT_END(__func__);
 }
