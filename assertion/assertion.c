@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 09:24:56 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 11:33:52 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int check_args(char **argv, t_data *data);
 int create_stack(char **argv, t_data *data);
 int check_duplicate(t_data data);
 int init_data(char **argv, t_data *data);
+void display_data(t_data data);
+int push(t_data *data, int src, int dst);
 
 void check_digit_assert(void)
 {
@@ -200,7 +202,6 @@ void check_dupplicate_assert(void)
         check duplicate value in stack.data
     */
     assert(check_duplicate(data) == ERR);
-    free(data.stack);
     /* check whitout dupplicate value */
     split = malloc(sizeof(char *) * 6);
     assert(split);
@@ -250,8 +251,36 @@ void init_data_assert(char **argv)
         split_len = (int)ft_split_len(split) - 1;
     assert(data.size_a == split_len);
     assert(data.size_b == 0);
-    
     ft_split_clean(&split);
+    ASSERT_END(__func__);
+}
+
+void swap_assert(void)
+{
+    ASSERT_START(__func__);
+    t_data data;
+    char *str[] = {"10 12 88 74 7 9 77"};
+    assert(init_data((char **)str, &data) == OK);
+    while (data.a != NULL)
+    {
+            assert(push(&data, STACK_A, STACK_B) == OK);
+            display_data(data);
+            NL;
+    }
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE); 
+    while (data.b != NULL)
+    {
+        assert(push(&data, STACK_B, STACK_A) == OK);
+        display_data(data);
+        NL;
+    }
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(NULL, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);
+    assert(push(&data, INT_MAX, INT_MIN)  == NO_MOVE);
     ASSERT_END(__func__);
 }
 
@@ -266,7 +295,7 @@ int main(int argc, char **argv)
     init_stack_assert();
     check_dupplicate_assert();
     init_data_assert(&argv[1]);
-
+    swap_assert();
     
     return (0);
 }
