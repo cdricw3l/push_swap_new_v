@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 15:08:40 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 16:28:46 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,7 +324,10 @@ void swap_assert(void)
 void rr_assert(void)
 {
     ASSERT_START(__func__);
+    
     t_data data;
+    int i;
+    int tmp;
     int arr[] = {10, 22, 1101, 7, 12, 32};
 
     data.a = &arr[3];
@@ -334,14 +337,28 @@ void rr_assert(void)
     data.size_a = 3;
     data.size_b = 3;
 
-    display_stack(&data, STACK_A);
-    rev_rotate(&data, STACK_A);
-    display_stack(&data, STACK_A);
-
-    
-    display_stack(&data, STACK_B);
-    rev_rotate(&data, STACK_B);
-    display_stack(&data, STACK_B);
+    i = 0;
+    while (i < data.size_a)
+    {
+        tmp = *data.a;
+        rev_rotate(&data, STACK_A);
+        display_stack(&data, STACK_A);
+        assert(*(data.a + 1) == tmp);
+        i++;
+    }
+    NL;
+    assert(*data.a == 7 && *(data.a + 1) == 12 && *(data.a + 2) == 32);
+    i = 0;
+    assert(data.size_b == 3);
+    while (i < data.size_b)
+    {
+        tmp = *data.b;
+        rev_rotate(&data, STACK_B);
+        display_stack(&data, STACK_B);
+        assert(*(data.b - 1) == tmp);
+        i++;
+    }
+    assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
 
     ASSERT_END(__func__);
     

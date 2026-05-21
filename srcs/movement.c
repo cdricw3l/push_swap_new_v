@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 15:15:28 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 15:30:52 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void display_stack(t_data *data, int stack)
     int *arr;
     int *ptr;
 
+    if (!data || (stack != STACK_A && stack != STACK_B))
+        return ;
     if (stack == STACK_A)
     {
         arr = data->a;
@@ -102,7 +104,7 @@ int swap(t_data *data, int stack)
     int *arr;
     int len;
 
-    if (!data)
+    if (!data || (stack != STACK_A && stack != STACK_B))
         return (NO_MOVE);
     /* this else else if else define with wich array we work */
     if (stack == STACK_A)
@@ -140,18 +142,19 @@ int rev_rotate(t_data *data, int stack)
     int len;
     int tmp;
 
-    (void)arr;
     (void)len;
-    if (stack == STACK_A)
+    (void)arr;
+    if (!data || (stack != STACK_A && stack != STACK_B))
+        return (NO_MOVE);
+    if (stack == STACK_A && data->a)
     {
         arr = data->a;
         len = data->size_a;
         tmp = *(data->a + data->size_a - 1);
         ft_memmove(data->a + 1, data->a, (data->size_a ) * sizeof(int));
         *(data->a) = tmp;
-
     }
-    else if (stack == STACK_B)
+    else if (stack == STACK_B && data->b)
     {
         arr = data->b;
         len = data->size_b;
@@ -159,8 +162,6 @@ int rev_rotate(t_data *data, int stack)
         ft_memmove(data->b - 2, data->b - 1, (data->size_b ) * sizeof(int));
         *(data->b) = tmp;
     }
-    else
-        return (NO_MOVE);
     return (OK);    
 }
 
