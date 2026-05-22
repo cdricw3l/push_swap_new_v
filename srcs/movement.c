@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 13:31:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 14:49:41 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,16 +151,15 @@ int rev_rotate(t_data *data, int stack)
         arr = data->a;
         len = data->size_a;
         tmp = *(data->a + data->size_a - 1);
-        ft_memmove(data->a + 1, data->a, (data->size_a ) * sizeof(int));
+        ft_memmove(data->a + 1, data->a, (data->size_a  - 1) * sizeof(int));
         *(data->a) = tmp;
     }
     else if (stack == STACK_B && data->b)
     {
         arr = data->b;
         len = data->size_b;
-        tmp = *(data->b);
-        printf("voici %d\n", tmp);
-        ft_memmove(data->b - 2, data->b - 1, (data->size_b - 1) * sizeof(int));
+        tmp = *(data->b - (data->size_b - 1));
+        ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
         *(data->b) = tmp;
     }
     return (OK);    

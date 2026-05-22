@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_assertions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 13:29:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 14:58:48 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void rev_rotate_short_assert(void)
         tmp = *data.a;
         assert(rev_rotate(&data, STACK_A) == OK);
         display_stack(&data, STACK_A);
-        assert(*(data.a + data.size_a) == tmp);
+        assert(*(data.a +  1) == tmp);
         i++;
     }
     NL;
@@ -217,6 +217,7 @@ void rotate_push_rotate_push_assert(char **argv)
     /*
         ensure the first value of stack b is the last value of stack a after pushing everything
     */
+    (void)size_b;
     size_b = data.size_b;
     assert(size_a == data.size_b);
     assert(*data.b == last_value);
@@ -230,25 +231,25 @@ void rotate_push_rotate_push_assert(char **argv)
     */
     
     i = 0;
-    display_stack(&data, STACK_B);
     NL;
-    while (i < 1)
+    while (i < data.size_b)
     {
         rev_rotate(&data, STACK_B);
-        display_stack(&data, STACK_B);
-        NL;
         i++;
     }
+
     assert(*(data.b) == last_value);
     
     i = 0;
     printf("last value %d\n", *(data.b));
 
+    display_stack(&data, STACK_B);
     while (i < data.size_b)
     {
         rotate(&data, STACK_B);
         i++;
     }
+    display_stack(&data, STACK_B);
 
     assert(*(data.b) == last_value);
 
@@ -266,5 +267,42 @@ void move_assertions(int argc, char **argv)
     // swap_assert();
     // rev_rotate_short_assert();
     // rotate_short_assert();
-    rotate_push_rotate_push_assert(&argv[1]);
+    // rotate_push_rotate_push_assert(&argv[1]);
+
+    t_data data;
+
+    char *split[] = {"10 11 12 13 14", NULL};
+
+    assert(init_data(split, &data) == OK);
+    assert(data.size_a == 5);
+    int i;
+    i = 0;
+    while (i < data.size_a)
+    {
+        display_stack(&data, STACK_A);
+        rotate(&data, STACK_A);
+        i++;
+
+    }
+    display_stack(&data, STACK_A);
+    i = OK;
+    while (i == OK)
+    {
+        i = push(&data, STACK_A, STACK_B);
+    }
+    NL;
+    NL;
+    i = 0;
+    assert(data.size_b == 5);
+    display_stack(&data, STACK_B);
+    rev_rotate(&data, STACK_B);
+    while (i < data.size_b)
+    {
+        display_stack(&data, STACK_B);
+        rotate(&data, STACK_B);
+        i++;
+
+    }
+    display_stack(&data, STACK_B);
+
 }

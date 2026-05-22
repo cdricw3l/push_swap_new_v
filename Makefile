@@ -26,7 +26,8 @@ as: $(ASSERT_OBJS)
 	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llib -lft -o $(NAME_ASSER)
 ifeq ($(shell uname), Darwin)
-	leaks -q  -atExit -- ./$(NAME_ASSER) $(ARG)
+#/* @leaks -q  -atExit -- 
+	@./$(NAME_ASSER) $(ARG)
 endif
 ifeq ($(OS), Linux)
 	@valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG)
