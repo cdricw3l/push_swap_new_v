@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:05:13 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 16:06:08 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,7 +286,7 @@ void move_assertions(int argc, char **argv)
     while (i < data.size_a)
     {
         display_stack(&data, STACK_A);
-        rotate(&data, STACK_A);
+        rev_rotate(&data, STACK_A);
         i++;
 
     }
@@ -303,7 +303,7 @@ void move_assertions(int argc, char **argv)
     while (i < data.size_b)
     {
         display_stack(&data, STACK_B);
-        rotate(&data, STACK_B);
+        rev_rotate(&data, STACK_B);
         i++;
 
     }
