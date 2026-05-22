@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:18:55 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 16:19:55 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,9 +226,8 @@ void rotate_push_rotate_push_assert(char **argv)
     assert(*(data.b - (data.size_b - 1)) == first_value);
     
     /*
-        check rotation in big list for stack b
+        check rev_rotation in big list for stack b
     */
-    
     i = 0;
     NL;
     while (i < data.size_b)
@@ -236,17 +235,16 @@ void rotate_push_rotate_push_assert(char **argv)
         rev_rotate(&data, STACK_B);
         i++;
     }
-
     assert(*(data.b) == last_value);
-    
     i = 0;
-    display_stack(&data, STACK_B);
+    /*
+        check rev_rotation in big list for stack b
+    */
     while (i < data.size_b)
     {
         rotate(&data, STACK_B);
         i++;
     }
-    display_stack(&data, STACK_B);
     assert(*(data.b) == last_value);
     ASSERT_END(__func__);
 }
