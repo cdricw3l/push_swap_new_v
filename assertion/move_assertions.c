@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_assertions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 14:58:48 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/22 16:05:13 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,12 @@ void rotate_push_rotate_push_assert(char **argv)
     ASSERT_END(__func__);
 }
 
+/*
+
+    rotate -> the last become the first
+    rev_rotate -> the first become the last
+*/
+
 void move_assertions(int argc, char **argv)
 {
     (void)argc;
@@ -294,8 +300,6 @@ void move_assertions(int argc, char **argv)
     NL;
     i = 0;
     assert(data.size_b == 5);
-    display_stack(&data, STACK_B);
-    rev_rotate(&data, STACK_B);
     while (i < data.size_b)
     {
         display_stack(&data, STACK_B);

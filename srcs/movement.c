@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 14:49:41 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/22 16:05:01 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int swap(t_data *data, int stack)
     return (OK);
 }
 
-int rev_rotate(t_data *data, int stack)
+int rotate(t_data *data, int stack)
 {
     int *arr;
     int len;
@@ -165,7 +165,7 @@ int rev_rotate(t_data *data, int stack)
     return (OK);    
 }
 
-int rotate(t_data *data, int stack)
+int rev_rotate(t_data *data, int stack)
 {
     int *arr;
     int len;
