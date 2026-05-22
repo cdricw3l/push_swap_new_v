@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:57:45 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 18:00:57 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,31 @@ void push_assert(void)
     
     while (data.size_a > 0)
     {
-        status = push(&data, STACK_A, STACK_B);
+        status = push(&data, STACK_A, STACK_B, NO_DISPLAY);
         display_stack(&data, STACK_B);
         display_stack(&data, STACK_A);
         assert(status == OK);
         NL;
     }
-    status = push(&data, STACK_A, STACK_B);
+    status = push(&data, STACK_A, STACK_B, NO_DISPLAY);
     assert(status == NO_MOVE);
-    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
-    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
-    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);
+    assert(push(&data, STACK_A, STACK_B, NO_DISPLAY)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B, NO_DISPLAY)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B, NO_DISPLAY)  == NO_MOVE);
     while (data.size_b > 0)
     {
         
-        status = push(&data, STACK_B, STACK_A);
+        status = push(&data, STACK_B, STACK_A, NO_DISPLAY);
         display_stack(&data, STACK_B);
         display_stack(&data, STACK_A);
         assert(status == OK);
         NL;
     }
-    status = push(&data, STACK_B, STACK_A);
+    status = push(&data, STACK_B, STACK_A, NO_DISPLAY);
     assert(status == NO_MOVE);
-    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
-    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
-    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE); 
+    assert(push(&data, STACK_B, STACK_A, NO_DISPLAY)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A, NO_DISPLAY)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A, NO_DISPLAY)  == NO_MOVE); 
     
     ASSERT_END(__func__);
 }
@@ -58,25 +58,25 @@ void swap_assert(void)
     char *str[] = {"10 12 88 74 7 9 77", NULL};
     
     assert(init_data((char **)str, &data) == OK);
-    assert(push(&data, STACK_A, STACK_B) == OK);
-    assert(push(&data, STACK_A, STACK_B) == OK);
-    assert(push(&data, STACK_A, STACK_B) == OK);
-    assert(swap(&data, STACK_A) == OK);
+    assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
+    assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
+    assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
+    assert(swap(&data, STACK_A, NO_DISPLAY) == OK);
     assert(*data.a == 7);
     assert(*(data.a + 1) == 74);
-    assert(swap(&data, STACK_B) == OK);
+    assert(swap(&data, STACK_B, NO_DISPLAY) == OK);
     assert(*data.b == 12);
     assert(*(data.b - 1) == 88);
-    assert(swap(&data, STACK_A) == OK);
-    assert(swap(&data, STACK_B) == OK);
-    assert(swap(NULL, STACK_A) == NO_MOVE);
-    assert(swap(NULL, STACK_B) == NO_MOVE);
-    assert(push(&data, STACK_B, STACK_A) == OK);
-    assert(push(&data, STACK_B, STACK_A) == OK);
-    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(swap(&data, STACK_A, NO_DISPLAY) == OK);
+    assert(swap(&data, STACK_B, NO_DISPLAY) == OK);
+    assert(swap(NULL, STACK_A, NO_DISPLAY) == NO_MOVE);
+    assert(swap(NULL, STACK_B, NO_DISPLAY) == NO_MOVE);
+    assert(push(&data, STACK_B, STACK_A, NO_DISPLAY) == OK);
+    assert(push(&data, STACK_B, STACK_A, NO_DISPLAY) == OK);
+    assert(push(&data, STACK_B, STACK_A, NO_DISPLAY) == OK);
     assert(data.size_b == 0);
     assert(*(data.a) == 10);
-    assert(swap(&data, STACK_B) ==  NO_MOVE);
+    assert(swap(&data, STACK_B, NO_DISPLAY) ==  NO_MOVE);
     ASSERT_END(__func__);
 }
 
@@ -208,7 +208,7 @@ void rotate_push_rotate_push_assert(char **argv)
     
     i = OK;
     while (i == OK)
-        i = push(&data, STACK_A, STACK_B);
+        i = push(&data, STACK_A, STACK_B, NO_DISPLAY);
     
     /* 
         ensure list a is empty and data.a == NULL
@@ -249,6 +249,62 @@ void rotate_push_rotate_push_assert(char **argv)
     ASSERT_END(__func__);
 }
 
+void double_rotation_assert(char **argv)
+{
+    
+    ASSERT_START(__func__, __LINE__);
+    t_data data;
+    int first_el_a;
+    int first_el_b;
+    int i;
+
+    assert(init_data(argv, &data) == OK);
+    /* check if we can split the list value int two equal stack*/
+    if(data.size_a % 2 != 0)
+        write(STDOUT_FILENO, "please create an even list of number\n", 37);
+    /* split in two equal stack */
+    while (data.size_b != data.size_a)
+        assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
+    assert(data.size_a == data.size_b);    
+    first_el_a = *(data.a);
+    first_el_b = *(data.b);
+
+    /* check for an invalide rotation */
+    assert(double_rotation(&data,P, NO_DISPLAY) == NO_MOVE);
+    
+    /* check for single rotation */
+    assert(double_rotation(&data, RR, NO_DISPLAY) == OK);
+    assert(*(data.a + 1) == first_el_a);
+    assert(*(data.b - 1) == first_el_b);
+    /* check for single rev_rotation */
+    assert(double_rotation(&data, RRR, NO_DISPLAY) == OK);
+    assert(*(data.a) == first_el_a);
+    assert(*(data.b) == first_el_b);
+    
+    i = data.size_a - 1;
+    while (i >= 0)
+    {
+        /* check for a rotation of all the stack */
+        double_rotation(&data, RR, NO_DISPLAY);
+        i--;
+    }
+    /* is the list back at is start point */
+    assert(*(data.a) == first_el_a);
+    assert(*(data.b) == first_el_b);
+    i = data.size_a - 1;
+    while (i >= 0)
+    {
+        /* check for a rev_rotation of all the stack */
+        double_rotation(&data, RRR, NO_DISPLAY);
+        i--;
+    }
+    /* is the list back at is start point */
+    assert(*(data.a) == first_el_a);
+    assert(*(data.b) == first_el_b);
+    
+    ASSERT_END(__func__);
+}
+
 /*
 
     rotate -> the last become the first
@@ -259,9 +315,10 @@ void move_assertions(int argc, char **argv)
 {
     (void)argc;
     
-    // push_assert();
-    // swap_assert();
-    // rev_rotate_short_assert();
-    // rotate_short_assert();
+    push_assert();
+    swap_assert();
+    rev_rotate_short_assert();
+    rotate_short_assert();
     rotate_push_rotate_push_assert(&argv[1]);
+    double_rotation_assert(&argv[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:58:28 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 17:51:03 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ typedef struct s_data
 
 /* movement */
 
-int push(t_data *data, int src, int dst);
-int swap(t_data *data, int stack);
+int push(t_data *data, int src, int dst, int mode);
+int swap(t_data *data, int stack, int mode);
 int rotate(t_data *data, int stack, int mode);
 int rev_rotate(t_data *data, int stack, int mode);
+int double_rotation(t_data *data, int move, int mode);
 
 /* utils */
 

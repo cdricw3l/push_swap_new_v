@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/22 16:52:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 17:28:25 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-    
+
     init_and_check_assert(argc, &argv[1]);
     move_assertions(argc, argv);
     

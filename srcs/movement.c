@@ -6,14 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:58:49 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 17:50:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <assert.h>
 
-int push(t_data *data, int src, int dst)
+int push(t_data *data, int src, int dst, int mode)
 {
     /* security check for data */
     if (!data)
@@ -28,7 +27,8 @@ int push(t_data *data, int src, int dst)
         /* if the size of stack A is 0 pointer B == NULL */
         if (data->size_a == 0)
             data->a = NULL;
-        print_move(P, dst);
+        if (mode == DISPLAY)
+            print_move(P, dst);
         return (OK);
     }
     /* ensure before pushing that stack B is not empty */
@@ -41,13 +41,14 @@ int push(t_data *data, int src, int dst)
         data->size_b--;
         if (data->size_b == 0)
             data->b = NULL;
-        print_move(P, dst);
+        if (mode == DISPLAY)
+            print_move(P, dst);
         return (OK);
     }
     return (NO_MOVE);
 }
 
-int swap(t_data *data, int stack)
+int swap(t_data *data, int stack, int mode)
 {
     int *arr;
     int len;
@@ -81,7 +82,8 @@ int swap(t_data *data, int stack)
     }
     else
         return (NO_MOVE);
-    print_move(S, stack);
+    if (mode == DISPLAY)
+        print_move(S, stack);
     return (OK);
 }
 
@@ -145,5 +147,26 @@ int rev_rotate(t_data *data, int stack, int mode)
     if(mode == DISPLAY)
         print_move(RV, stack);
     return (OK);    
+}
+
+int double_rotation(t_data *data, int move, int mode)
+{
+    if (move != RR && move != RRR)
+        return (NO_MOVE);
+    if (move == RR)
+    {
+        rotate(data, STACK_A, NO_DISPLAY);
+        rotate(data, STACK_B, NO_DISPLAY);
+        if (mode == DISPLAY)
+            print_move(RR, A_AND_B);
+    }
+    else if (move == RRR)
+    {
+        rev_rotate(data, STACK_A, NO_DISPLAY);
+        rev_rotate(data, STACK_B, NO_DISPLAY);
+        if (mode == DISPLAY)
+            print_move(RRR, A_AND_B);
+    }
+    return (OK);
 }
 
