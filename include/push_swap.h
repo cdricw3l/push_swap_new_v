@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 13:11:07 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/23 14:10:30 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void    display_stack(t_data *data, int stack);
 void    print_move(int move, int stack);
 float   compute_disorder(t_data *data);
 void    put_float(float nb);
+int     get_complexity(char *arg);
+
 #endif
 
 

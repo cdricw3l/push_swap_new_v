@@ -2,8 +2,21 @@ NAME=push_swap
 NAME_ASSER=assertion/push_swap_assert
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror -g
-SRCS=srcs/push_swap.c srcs/main.c
-SRCS_ASSERT= assertion/assertion.c assertion/init_and_check_assertions.c assertion/move_assertions.c srcs/push_swap.c srcs/movement.c srcs/utils.c
+SRCS= 	srcs/check_and_init.c \
+		srcs/movement.c \
+		srcs/utils.c \
+		srcs/main.c \
+		srcs/display.c \
+		srcs/debbuging.c
+SRCS_ASSERT= 	assertion/assertion.c \
+				assertion/init_and_check_assertions.c \
+				assertion/move_assertions.c \
+				srcs/check_and_init.c \
+				srcs/movement.c \
+				srcs/utils.c \
+				srcs/display.c \
+				srcs/debbuging.c \
+
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
 LIBFT=lib
@@ -46,6 +59,7 @@ clean:
 	rm -rf $(SRCS_OBJS) $(ASSERT_OBJS) $(VALGRIND_LOG) $(LLDB_OBJS)
 
 fclean: clean
+	make fclean -C $(LIBFT)
 	rm -rf $(NAME) $(NAME_ASSER) lldb_training/lldb_test 
 
 re: fclean $(NAME)
@@ -53,7 +67,6 @@ re: fclean $(NAME)
 COM=push_swap_generic
 
 git: fclean
-	make clean -C $(LIBFT)
 	git add .
 	git commit -m $(COM)
 	git push origin $(shell git branch --show-current)
@@ -69,7 +82,5 @@ home:
 	rm -rf *
 	cp -r ../push_swap/* .
 	rm Makefile && mv ../.git . && mv ../Makefile .
-
-
 
 .PHONY: all clean fclean re as home libft git lldb
