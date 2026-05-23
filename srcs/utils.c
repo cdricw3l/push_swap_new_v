@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/22 17:00:09 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/23 13:10:48 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,32 @@ void print_move(int move, int stack)
     if(move == RRR && stack == A_AND_B)
         write(STDOUT_FILENO, "rrr\n", 4);
     
+}
+
+
+/* display float value for benchmark */
+
+static int	float_precision_ajustement(int n)
+{    
+    if(n % 10 > 5)
+    {
+        while (n % 10 != 0)
+            n++;
+    }
+    return (n);
+}
+
+
+void put_float(float nb)
+{
+    int ipart;
+    int f_adjusted;
+    float fpart;
+
+    ipart = (int)nb;
+    fpart = nb - (float)ipart;
+    f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
+    ft_putnbr_fd(ipart, STDOUT_FILENO);
+    write(STDOUT_FILENO, ".", 1);
+    ft_putnbr_fd(f_adjusted, STDOUT_FILENO);
 }

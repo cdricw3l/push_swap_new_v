@@ -37,7 +37,8 @@ LLDB_SRCS= lldb_training/lldb.c
 LLDB_OBJS=  $(LLDB_SRCS:.c=.o)
 
 lldb: $(LLDB_OBJS)
-	$(CC) $(CFLAGS) $(LLDB_OBJS) -o lldb_training/lldb_test
+	$(CC) $(CFLAGS) $(LLDB_OBJS) -Llib -lft -lm -o lldb_training/lldb_test
+	./lldb_training/lldb_test
 #lldb lldb_training/lldb_test
 
 

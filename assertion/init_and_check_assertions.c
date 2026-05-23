@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:09:57 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 13:13:53 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/23 13:12:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,12 +228,11 @@ void init_data_assert(char **argv)
     assert(init_data(argv, &data) == OK);
     assert(data.a == data.stack);
     assert(data.b == NULL);
-    // if(data.algo == NONE)
-    //     split_len = argc - 1;
-    // else
-    //     split_len = argc - 2;
-    // assert(data.size_a == split_len);
     assert(data.size_b == 0);
+
+    printf("voici disorder %f\n", data.disorder * 100);
+    put_float(data.disorder * 100);
+    NL;
     ASSERT_END(__func__);
 }
 
