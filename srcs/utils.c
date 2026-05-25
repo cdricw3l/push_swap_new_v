@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/25 17:21:33 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:09:04 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int *get_smalest_value(t_global_data *data, int stack)
     else if(stack == STACK_B)
     {
         arr = data->b;
+
+		
         while (arr >= data->start)
         {
             if(*arr < *p1)
@@ -104,6 +106,7 @@ int *get_smalest_value(t_global_data *data, int stack)
             arr--;
         }
     }
+
 	return (p1);
 }
 
@@ -132,7 +135,9 @@ int  synchronise_list(t_global_data *data, int stack)
 
 	if(get_stack_data(*data, stack, &stk) == ERR)
 		return (ERR);
-	smalest = get_smalest_value(data, STACK_A);
-	printf("borne - : %p borne + : %p smalest: %p", data->start, data->end, smalest);
+	
+	printf("here coco %p\n", &stk);
+
+	printf("borne - : %d borne + : %d smalest: %d\n", *data->start, *data->end, *smalest);
 	return (OK);
 }

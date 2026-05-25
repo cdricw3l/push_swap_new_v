@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 18:41:04 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void push_assert(void)
         status = push(&data, STACK_A, STACK_B, NO_DISPLAY);
         display_stack(&data, STACK_B);
         display_stack(&data, STACK_A);
+        printf("voici status: %d\n", status);
         assert(status == OK);
         NL;
     }
