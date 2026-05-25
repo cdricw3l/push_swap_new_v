@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_assertions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 18:41:04 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:29:21 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,6 @@ void rotate_push_rotate_push_assert(char **argv)
     int last_value;
     int first_value;
     int size_a;
-    int size_b;
 
     assert(init_global_data(argv, &data) == OK);
     assert(data.b  == NULL);
@@ -218,7 +217,6 @@ void rotate_push_rotate_push_assert(char **argv)
     /*
         ensure the first value of stack b is the last value of stack a after pushing everything
     */
-    size_b = data.size_b;
     assert(size_a == data.size_b);
     assert(*data.b == last_value);
     /*

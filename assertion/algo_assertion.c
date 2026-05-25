@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_assertion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 21:56:51 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:37:06 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void buble_sort_assert(char **argv)
 
     assert(argv[1]);
     assert(init_global_data(&argv[1], &data) == OK);
-    display_stack(&data, STACK_A);
     //min_at_beginning(&data, STACK_A);
     //display_stack(&data, STACK_A);
     //tree_values(&data);

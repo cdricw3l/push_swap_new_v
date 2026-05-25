@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 21:59:18 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:32:54 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,10 @@ void five_values(t_global_data *data)
         return ;
     min_at_beginning(data, STACK_A);
     push(data, STACK_A,STACK_B, DISPLAY);
-    display_stack(data, STACK_A);
     min_at_beginning(data, STACK_A);
     push(data, STACK_A,STACK_B, DISPLAY);
+    tree_values(data);
+    push(data, STACK_B,STACK_A, DISPLAY);
+    push(data, STACK_B,STACK_A, DISPLAY);
     display_stack(data, STACK_A);
-    // tree_values(data);
-    // push(data, STACK_B,STACK_A, DISPLAY);
-    // push(data, STACK_B,STACK_A, DISPLAY);
 }

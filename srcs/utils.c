@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/25 22:01:39 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:39:59 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	min_at_beginning(t_global_data *data, int stack)
 	int		*smalest;
 
 	smalest = get_smalest_value(data, stack);
-	left = ((long)data->start - (long)smalest) / 4;
+	left = (((long)data->start - (long)smalest) / 4) - 1;
 	right = ((long)data->end - (long)smalest) / sizeof(int) + 1;
 	if (smalest == data->start)
 		return(OK);
@@ -151,7 +151,7 @@ int	min_at_beginning(t_global_data *data, int stack)
 	else if(right > left)
 		while (left > 0)
 		{
-			rev_rotate(data, stack, DISPLAY);
+			rotate(data, stack, DISPLAY);
 			left--;
 		}
 	return (OK);
