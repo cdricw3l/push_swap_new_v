@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 14:10:30 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 11:25:45 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ int rotate(t_data *data, int stack, int mode);
 int rev_rotate(t_data *data, int stack, int mode);
 int double_rotation(t_data *data, int move, int mode);
 
+/* algo */
+
+void tree_values(t_data *data);
+
 /* utils */
 
 void    ft_swap(int *p1, int *p2);
@@ -80,7 +84,7 @@ void    print_move(int move, int stack);
 float   compute_disorder(t_data *data);
 void    put_float(float nb);
 int     get_complexity(char *arg);
-
+int     ft_is_sort(t_data *data);
 #endif
 
 

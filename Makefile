@@ -5,18 +5,20 @@ CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/check_and_init.c \
 		srcs/movement.c \
 		srcs/utils.c \
+		srcs/main.c \
 		srcs/display.c \
 		srcs/debbuging.c \
-		srcs/main.c \
-
+		srcs/algo.c 
 SRCS_ASSERT= 	assertion/assertion.c \
+				assertion/algo_assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
 				srcs/check_and_init.c \
 				srcs/movement.c \
 				srcs/utils.c \
+				srcs/algo.c \
 				srcs/display.c \
-				srcs/debbuging.c \
+				srcs/debbuging.c
 
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
@@ -34,11 +36,11 @@ $(NAME): $(SRCS_OBJS)
 #ARG1="--simple 10 -1 32 45 7 89 -23 56 0 14 67 -45 23 9 100 -12 38 72 -8 5 91 -34   60 11 -99 27 44 -6 3 81 19 -50 66 2 77 -15 8 39 -2 95 53 -7 21 64 -30 12 88 -4 6 41 73 -18 25 97 -11 1 58 -22 36 84 -3 13 70 -40 16 92 -14 28 54 -9 4 80 -27 33 68 -5 17 90 -16 42 61 -35 24 79 -13 31   55   -20   69   86   -10   15   37   -28   62   93   -17   26   48   -21"
 #ARG2="10 -1 32 45 7 89 -23 56 0 14 67 -45 23 9 100 -12 38 72 -8 5 91 -34   60 11 -99 27 44 -6 3 81 19 -50 66 2 77 -15 8 39 -2 95 53 -7 21 64 -30 12 88 -4 6 41 73 -18 25 97 -11 1 58 -22 36 84 -3 13 70 -40 16 92 -14 28 54 -9 4 80 -27 33 68 -5 17 90 -16 42 61 -35 24 79 -13 31   55   -20   69   86   -10   15   37   -28   62   93   -17   26   48   -21"
 
-ARG=$(ARG1)
+ARG=$(L100)
 
 as: $(ASSERT_OBJS)
 	@make -C $(LIBFT)
-	@$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llib -lft -o $(NAME_ASSER)
+	$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llib -lft -o $(NAME_ASSER)
 ifeq ($(shell uname), Darwin)
 #/* @leaks -q  -atExit -- 
 	@./$(NAME_ASSER) $(ARG)
@@ -47,11 +49,11 @@ ifeq ($(OS), Linux)
 	@valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG)
 endif
 
-LLDB_SRCS= lldb_training/lldb.c
+LLDB_SRCS= lldb_training/lldb.c srcs/utils.c
 LLDB_OBJS=  $(LLDB_SRCS:.c=.o)
 
 lldb: $(LLDB_OBJS)
-	$(CC) $(CFLAGS) $(LLDB_OBJS) -Llib -lft -lm -o lldb_training/lldb_test
+	$(CC) $(CFLAGS) $(LLDB_OBJS) -Llib -lft -o lldb_training/lldb_test
 	./lldb_training/lldb_test
 #lldb lldb_training/lldb_test
 
@@ -77,11 +79,5 @@ libft:
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.* lib/.
 	make clean -C $(LIBFT)
-
-home:
-	mv .git ../. && mv Makefile ../.
-	rm -rf *
-	cp -r ../push_swap/* .
-	rm Makefile && mv ../.git . && mv ../Makefile .
 
 .PHONY: all clean fclean re as home libft git lldb

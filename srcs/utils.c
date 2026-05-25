@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/23 14:04:45 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 11:30:27 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ float	compute_disorder(t_data *data)
 		i++;
 	}
 	return (mistakes / total_pairs);
+}
+int ft_is_sort(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->size_a - 1)
+	{
+		if(data->stack[i] > data->stack[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -6,36 +6,81 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 11:32:50 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 13:10:06 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 10:16:17 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include <assert.h>
 
-int	float_precision_ajustement(int n)
-{    
-    if(n % 10 > 5)
+// void radix_sort(int arr[10], int len)
+// {
+    
+// }
+
+int ft_is_sort(int arr[10], int len)
+{
+    int i;
+
+    i = 0;
+    while (i < len - 1)
     {
-        while (n % 10 != 0)
-            n++;
-        
+        if (arr[i] > arr[i + 1])
+            return (0);
+        i++;
     }
-    return (n);
+    return (1);
 }
 
-
-void put_float(float nb)
+void jump_sort(int arr[10], int len)
 {
-    int ipart;
-    int f_adjusted;
-    float fpart;
+    int i;
+    int j;
 
-    ipart = (int)nb;
-    fpart = nb - (float)ipart;
-    f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
-    ft_putnbr_fd(ipart,STDOUT_FILENO);
-    write(STDOUT_FILENO, ".", 1);
-    ft_putnbr_fd(f_adjusted,STDOUT_FILENO);
+    i = 0;
+    while (i < len)
+    {
+        j = i + 1;
+        while (j < len)
+        {
+            if (arr[i] > arr[j])
+            {
+                ft_swap(&arr[i], &arr[j]);
+                j = i + 1;
+            }
+            j++;
+        }
+        i++;
+    }
+    
+
+}
+
+void bubble_sort(int arr[10], int len)
+{
+    int i;
+
+    i = 0;
+    while (i < len - 1)
+    {
+        if(arr[i] > arr[i + 1])
+            ft_swap(&arr[i], &arr[i + 1]);
+        i++;
+        if (i == len - 1)
+        {
+            i = 0;
+            len--;
+        }
+    }
+}
+
+void print_arr(int arr[10], int len)
+{
+    int i;
+
+    i = 0;
+    while (i < len)
+        printf("%d ", arr[i++]);
 }
 
 int main(int argc, char **argv)
@@ -43,8 +88,13 @@ int main(int argc, char **argv)
 
     (void)argc;
     (void)argv;
-
-    put_float(8.57);
+    
+    int arr[] = {280, 54, -90, 40, 8, -27, 33, 68, -5, 17000, -1};
+    int n = sizeof(arr)/ sizeof(arr[0]);
+    assert(!ft_is_sort(arr, n));
+    bubble_sort(arr, n);
+    print_arr(arr, n);
+    assert(ft_is_sort(arr, n));
     
     return (0);
 }

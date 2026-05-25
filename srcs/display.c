@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 14:01:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 09:03:20 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ void	put_float(float nb)
 	int		f_adjusted;
 	float	fpart;
 
+	/* get int value part */
 	ipart = (int)nb;
+	/* get float part */
 	fpart = nb - (float)ipart;
+	/* check if third number is greater than 5. Exemple: 0.586 -> 0.59 */
 	f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
+	/* write integer part */
 	ft_putnbr_fd(ipart, STDOUT_FILENO);
+	/* write '.' */
 	write(STDOUT_FILENO, ".", 1);
+	/* write float part */
 	ft_putnbr_fd(f_adjusted, STDOUT_FILENO);
 }
 

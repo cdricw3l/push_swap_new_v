@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 18:00:57 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/24 09:15:11 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,10 @@ void double_rotation_assert(char **argv)
     assert(init_data(argv, &data) == OK);
     /* check if we can split the list value int two equal stack*/
     if(data.size_a % 2 != 0)
-        write(STDOUT_FILENO, "please create an even list of number\n", 37);
+    {
+        printf(RED"please create an even list of number"RESET"\n");
+
+    }
     /* split in two equal stack */
     while (data.size_b != data.size_a)
         assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);

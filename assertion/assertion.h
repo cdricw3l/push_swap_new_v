@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include "../include/push_swap.h"
 
+#define RED  "\033[0;31m"
 #define YELLOW  "\033[0;33m"
 #define GREEN   "\033[0;32m"
 #define RESET   "\033[0m"
@@ -27,5 +28,8 @@ int create_stack(char **argv, t_data *data);
 int check_duplicate(t_data *data);
 int init_data(char **argv, t_data *data);
 void display_data(t_data data);
+
+
+void algo_assert(char **argv);
 
 #endif
