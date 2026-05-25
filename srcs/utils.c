@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/25 20:15:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:01:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,10 @@ int	min_at_beginning(t_global_data *data, int stack)
 	int		*smalest;
 
 	smalest = get_smalest_value(data, stack);
-	left = ((long)data->start - (long)smalest) / sizeof(int);
+	left = ((long)data->start - (long)smalest) / 4;
 	right = ((long)data->end - (long)smalest) / sizeof(int) + 1;
+	if (smalest == data->start)
+		return(OK);
 	if (left < 0)
 		left = left *-1;
 	if (right < 0)

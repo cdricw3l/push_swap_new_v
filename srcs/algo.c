@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 20:59:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 21:59:18 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,56 +26,54 @@ int ft_buble_sort_push(t_global_data *data)
 
 /*
     case 0: 3 4 5; 
-
     case 1: 3 5 4; 
-
     case 2: 4 3 5;
 
     case 3: 4 5 3;
-
     case 4: 5 3 4; 
-
     case 5: 5 4 3
 */
+#include <assert.h>
 
 void tree_values(t_global_data *data)
 {
-    // if (ft_is_sort(data))
-    //     return ;
+    int a;
+    int b;
+    int c;
+
+    a = *(data->a);
+    b = *(data->a + 1);
+    c = *(data->a + 2);
     
-    /* case 1 */
-    if (*(data->a) < (*(data->a + 1) && *(data->a + 1) > *(data->a + 2)))
+    if (a < b && b > c)
     {
         swap(data, STACK_A, DISPLAY);
         rotate(data, STACK_A, DISPLAY);
     }
-    // /* case 2 */
-    else if (*(data->a) > (*(data->a + 1) && *(data->a) < *(data->a + 2)))
+    else if (a > b && b < c)
         swap(data, STACK_A, DISPLAY);
-    /* case 3 */
-    else if (*(data->a) < (*(data->a + 1) && *(data->a) > *(data->a + 2)))
+    else if (a < b && b > c)
         rotate(data, STACK_A, DISPLAY);
-    /* case 4 */
-    else if (*(data->a) > (*(data->a + 1) && *(data->a + 1) < *(data->a + 2)))
+    else if (a > b && b < c)
         rev_rotate(data, STACK_A, DISPLAY);
-     /* case 5 */    
-    else if (*(data->a) > *(data->a + 1) &&  *(data->a + 1) > *(data->a + 2))
+    else if ((a > b) &&  (b > c))
     {
         swap(data, STACK_A, DISPLAY);
         rotate(data, STACK_A, DISPLAY);
     }
-    
 }
 
 void five_values(t_global_data *data)
 {
-    min_at_beginning(data, STACK_A);
-    push(data, STACK_A,STACK_B, DISPLAY);
+    if(ft_is_sort(data))
+        return ;
     min_at_beginning(data, STACK_A);
     push(data, STACK_A,STACK_B, DISPLAY);
     display_stack(data, STACK_A);
-    tree_values(data);
+    min_at_beginning(data, STACK_A);
+    push(data, STACK_A,STACK_B, DISPLAY);
     display_stack(data, STACK_A);
-    push(data, STACK_B,STACK_A, DISPLAY);
-    push(data, STACK_B,STACK_A, DISPLAY);
+    // tree_values(data);
+    // push(data, STACK_B,STACK_A, DISPLAY);
+    // push(data, STACK_B,STACK_A, DISPLAY);
 }
