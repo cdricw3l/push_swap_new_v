@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/25 19:09:04 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:11:50 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,5 @@ int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
 
 int  synchronise_list(t_global_data *data, int stack)
 {
-	int 			*smalest;
-	t_stack_data	stk;
-
-	if(get_stack_data(*data, stack, &stk) == ERR)
-		return (ERR);
-	
-	printf("here coco %p\n", &stk);
-
-	printf("borne - : %d borne + : %d smalest: %d\n", *data->start, *data->end, *smalest);
 	return (OK);
 }
