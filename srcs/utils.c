@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/25 19:11:50 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 20:15:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,34 +79,33 @@ int ft_is_sort(t_global_data *data)
 }
 int *get_smalest_value(t_global_data *data, int stack)
 {
-    int *arr;
-    int *p1;
+	int *arr;
+	int *p1;
 	int i = INT_MAX;
 
 	p1 = &i;
-    if (stack == STACK_A)
-    {
-        arr = data->a;
-        while (arr <= data->end)
-        {
-            if(*arr < *p1)
-                p1 = arr;
-            arr++;
-        }
-    }
-    else if(stack == STACK_B)
-    {
-        arr = data->b;
+	if (stack == STACK_A)
+	{
+		arr = data->a;
+		while (arr <= data->end)
+		{
+			if(*arr < *p1)
+				p1 = arr;
+			arr++;
+		}
+	}
+	else if(stack == STACK_B)
+	{
+		arr = data->b;
 
 		
-        while (arr >= data->start)
-        {
-            if(*arr < *p1)
-                p1 = arr;
-            arr--;
-        }
-    }
-
+		while (arr >= data->start)
+		{
+			if(*arr < *p1)
+				p1 = arr;
+			arr--;
+		}
+	}
 	return (p1);
 }
 
@@ -128,7 +127,30 @@ int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
 }
 
 
-int  synchronise_list(t_global_data *data, int stack)
+int	min_at_beginning(t_global_data *data, int stack)
 {
+	long	left;
+	long	right;
+	int		*smalest;
+
+	smalest = get_smalest_value(data, stack);
+	left = ((long)data->start - (long)smalest) / sizeof(int);
+	right = ((long)data->end - (long)smalest) / sizeof(int) + 1;
+	if (left < 0)
+		left = left *-1;
+	if (right < 0)
+		right = right *-1;
+	if (left > right || left == right)
+		while (right > 0)
+		{
+			rotate(data, stack, DISPLAY);
+			right--;
+		}
+	else if(right > left)
+		while (left > 0)
+		{
+			rev_rotate(data, stack, DISPLAY);
+			left--;
+		}
 	return (OK);
 }

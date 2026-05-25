@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 18:40:42 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 20:13:47 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int     get_complexity(char *arg);
 int     ft_is_sort(t_global_data *data);
 int     *get_smalest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
-int     synchronise_list(t_global_data *data, int stack);
+int     min_at_beginning(t_global_data *data, int stack);
 
 #endif
 

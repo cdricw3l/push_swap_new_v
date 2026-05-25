@@ -46,7 +46,6 @@ ifeq ($(shell uname), Darwin)
 	@./$(NAME_ASSER) $(ARG)
 endif
 ifeq ($(OS), Linux)
-	echo $(ARG)
 	valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG)
 endif
 
