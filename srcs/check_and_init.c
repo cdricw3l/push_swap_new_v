@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 13:32:19 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_digit(char *str)
 	return (OK);
 }
 
-int	check_args(char **argv, t_data *data)
+int	check_args(char **argv, t_global_data *data)
 {
 	size_t	i;
 	size_t	j;
@@ -73,7 +73,7 @@ int	check_args(char **argv, t_data *data)
 	return (OK);
 }
 
-int	create_stack(char **argv, t_data *data)
+int	create_stack(char **argv, t_global_data *data)
 {
 	size_t	i;
 	size_t	j;
@@ -102,7 +102,7 @@ int	create_stack(char **argv, t_data *data)
 	return (OK);
 }
 
-int	check_duplicate(t_data *data)
+int	check_duplicate(t_global_data *data)
 {
 	int	i;
 	int	j;
@@ -122,7 +122,7 @@ int	check_duplicate(t_data *data)
 	return (OK);
 }
 
-int	init_data(char **argv, t_data *data)
+int	init_global_data(char **argv, t_global_data *data)
 {
 	if (!argv || !*argv)
 		return (ERR);

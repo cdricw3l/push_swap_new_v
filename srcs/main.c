@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/23 13:51:19 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-    //t_data data;
+    //t_global_data data;
 
     // if (check_args(&argv[1], &data) == ERR)
     // {

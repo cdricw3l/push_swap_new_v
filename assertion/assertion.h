@@ -19,15 +19,15 @@ void    move_assertions(int argc, char **argv);
 int     init_and_check_assert(int argc, char **argv);
 
 
-void display_stack(t_data *data, int stack);
-int check_args(char **argv, t_data *data);
+void display_stack(t_global_data *data, int stack);
+int check_args(char **argv, t_global_data *data);
 int check_digit(char *str);
 int get_complexity(char *arg);
-int check_args(char **argv, t_data *data);
-int create_stack(char **argv, t_data *data);
-int check_duplicate(t_data *data);
-int init_data(char **argv, t_data *data);
-void display_data(t_data data);
+int check_args(char **argv, t_global_data *data);
+int create_stack(char **argv, t_global_data *data);
+int check_duplicate(t_global_data *data);
+int init_global_data(char **argv, t_global_data *data);
+void display_data(t_global_data data);
 
 
 void algo_assert(char **argv);

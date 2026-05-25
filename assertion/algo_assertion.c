@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 13:42:01 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 17:22:35 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void tree_value_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
 
     int arr1[3] = {1,2,3};
     int arr2[3] = {1,3,2};
@@ -51,13 +51,19 @@ void tree_value_assert(void)
 void buble_sort_assert(char **argv)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
 
     assert(argv[1]);
     printf("voici %s\n", argv[1]);
-    assert(init_data(&argv[1], &data) == OK);
-    int move = ft_buble_sort_push(&data);
-    printf("voici le nombre de mouvement: %d\n", move);
+    assert(init_global_data(&argv[1], &data) == OK);
+    assert(*(get_smalest_value(&data, STACK_A)) == -22);
+    while (data.size_a != 0)
+        push(&data,STACK_A, STACK_B, DISPLAY);
+    assert(data.size_a == 0);
+    assert(data.a == NULL);
+    assert(*(get_smalest_value(&data, STACK_B)) == -22);
+    
+    synchronise_list(&data, STACK_A);
     ASSERT_END(__func__);
 }
 

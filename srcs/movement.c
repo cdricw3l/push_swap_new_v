@@ -6,13 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 14:11:37 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int push(t_data *data, int src, int dst, int mode)
+int push(t_global_data *data, int src, int dst, int mode)
 {
 	/* security check for data */
 	if (!data)
@@ -48,7 +48,7 @@ int push(t_data *data, int src, int dst, int mode)
 	return (NO_MOVE);
 }
 
-int swap(t_data *data, int stack, int mode)
+int swap(t_global_data *data, int stack, int mode)
 {
 	int *arr;
 	int len;
@@ -87,7 +87,7 @@ int swap(t_data *data, int stack, int mode)
 	return (OK);
 }
 
-int rotate(t_data *data, int stack, int mode)
+int rotate(t_global_data *data, int stack, int mode)
 {
 	int *arr;
 	int len;
@@ -118,7 +118,7 @@ int rotate(t_data *data, int stack, int mode)
 	return (OK);    
 }
 
-int rev_rotate(t_data *data, int stack, int mode)
+int rev_rotate(t_global_data *data, int stack, int mode)
 {
 	int *arr;
 	int len;
@@ -149,7 +149,7 @@ int rev_rotate(t_data *data, int stack, int mode)
 	return (OK);    
 }
 
-int double_rotation(t_data *data, int move, int mode)
+int double_rotation(t_global_data *data, int move, int mode)
 {
 	if (move != RR && move != RRR)
 		return (NO_MOVE);

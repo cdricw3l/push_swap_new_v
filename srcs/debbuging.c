@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:47:10 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 13:52:09 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* just for debbuging. Delete this file for the render */
 
-void display_data(t_data data)
+void display_data(t_global_data data)
 {  
     if(data.algo == NONE)
         printf("aldo type: %s\n", "none");
@@ -33,7 +33,7 @@ void display_data(t_data data)
 }
 /* just for debbuging. Delete this file for the render */
 
-void display_stack(t_data *data, int stack)
+void display_stack(t_global_data *data, int stack)
 {
     int *ptr;
 

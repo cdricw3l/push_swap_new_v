@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:09:57 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 13:12:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void check_arg_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     char **split;
-    t_data data;
+    t_global_data data;
     int i;
     split = malloc(sizeof(char *) * 6);
 
@@ -123,7 +123,7 @@ void init_stack_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     char **split;
-    t_data data;
+    t_global_data data;
 
     split = malloc(sizeof(char *) * 6);
     assert(split);
@@ -152,7 +152,7 @@ void check_dupplicate_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     char **split;
-    t_data data;
+    t_global_data data;
 
     /*
         check whith dupplicate value
@@ -219,13 +219,13 @@ void check_dupplicate_assert(void)
     ASSERT_END(__func__);
 }
 
-void init_data_assert(char **argv)
+void init_global_data_assert(char **argv)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
     //int split_len;
 
-    assert(init_data(argv, &data) == OK);
+    assert(init_global_data(argv, &data) == OK);
     assert(data.a == data.stack);
     assert(data.b == NULL);
     assert(data.size_b == 0);
@@ -247,7 +247,7 @@ int init_and_check_assert(int argc, char **argv)
     check_arg_assert();
     init_stack_assert();
     check_dupplicate_assert();
-    init_data_assert(argv);
+    init_global_data_assert(argv);
     
     
     return (0);

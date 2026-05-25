@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/24 09:15:11 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void push_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
     char *str[] = {"10 12 88 74 7 9 77", NULL};
-    assert(init_data((char **)str, &data) == OK);
+    assert(init_global_data((char **)str, &data) == OK);
     int status;
     
     while (data.size_a > 0)
@@ -54,10 +54,10 @@ void push_assert(void)
 void swap_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
     char *str[] = {"10 12 88 74 7 9 77", NULL};
     
-    assert(init_data((char **)str, &data) == OK);
+    assert(init_global_data((char **)str, &data) == OK);
     assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
     assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
     assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
@@ -84,7 +84,7 @@ void rev_rotate_short_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     
-    t_data data;
+    t_global_data data;
     int i;
     int tmp;
     int arr[] = {10, 22, 1101, 7, 12, 32};
@@ -134,7 +134,7 @@ void rev_rotate_short_assert(void)
 void rotate_short_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
     int arr[] = {10, 22, 1101, 7, 12, 32};
     int i;
     int tmp;
@@ -171,14 +171,14 @@ void rotate_short_assert(void)
 void rotate_push_rotate_push_assert(char **argv)
 {
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
     int i;
     int last_value;
     int first_value;
     int size_a;
     int size_b;
 
-    assert(init_data(argv, &data) == OK);
+    assert(init_global_data(argv, &data) == OK);
     assert(data.b  == NULL);
     size_a = data.size_a;
     first_value = *(data.a);
@@ -253,12 +253,12 @@ void double_rotation_assert(char **argv)
 {
     
     ASSERT_START(__func__, __LINE__);
-    t_data data;
+    t_global_data data;
     int first_el_a;
     int first_el_b;
     int i;
 
-    assert(init_data(argv, &data) == OK);
+    assert(init_global_data(argv, &data) == OK);
     /* check if we can split the list value int two equal stack*/
     if(data.size_a % 2 != 0)
     {
