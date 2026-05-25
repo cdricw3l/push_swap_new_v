@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 20:13:47 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 20:28:08 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int double_rotation(t_global_data *data, int move, int mode);
 /* algo */
 
 void tree_values(t_global_data *data);
+void five_values(t_global_data *data);
 int ft_buble_sort_push(t_global_data *data);
 
 /* utils */

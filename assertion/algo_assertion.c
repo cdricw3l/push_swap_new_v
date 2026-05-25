@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 20:17:36 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 20:54:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,17 @@ void buble_sort_assert(char **argv)
     assert(argv[1]);
     printf("voici %s\n", argv[1]);
     assert(init_global_data(&argv[1], &data) == OK);
-    // assert(*(get_smalest_value(&data, STACK_A)) == -22);
-
-   
-    min_at_beginning(&data, STACK_A);
-    assert(get_smalest_value(&data, STACK_A) == data.a);
-    //assert(*(get_smalest_value(&data, STACK_B)) == -22);
+    display_stack(&data, STACK_A);
+    tree_values(&data);
+    //five_values(&data);
+    assert(ft_is_sort(&data));
     
     ASSERT_END(__func__);
 }
 
 void algo_assert(char **argv)
 {
-    tree_value_assert();
+    //tree_value_assert();
     printf("voici %s\n", argv[0]);
     buble_sort_assert(argv);
 }   
