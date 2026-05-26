@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/26 10:41:18 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:35:21 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	ft_swap(int *p1, int *p2)
+{
+	int	tmp;
+
+	if (!p1 || !p2)
+		return ;
+	tmp = *p1;
+	*p1 = *p2;
+	*p2 = tmp;
+}
+
 
 int	get_complexity(char *arg)
 {
@@ -27,17 +39,6 @@ int	get_complexity(char *arg)
 			ft_strlen_longest("--adaptive", arg)) == OK)
 		return (ADAPTATIVE);
 	return (NONE);
-}
-
-void	ft_swap(int *p1, int *p2)
-{
-	int	tmp;
-
-	if (!p1 || !p2)
-		return ;
-	tmp = *p1;
-	*p1 = *p2;
-	*p2 = tmp;
 }
 
 float	compute_disorder(t_global_data *data)
@@ -64,53 +65,34 @@ float	compute_disorder(t_global_data *data)
 	}
 	return (mistakes / total_pairs);
 }
-int ft_is_sort(t_global_data *data)
-{
-	int i;
 
+int ft_is_sort(t_global_data *data, int stack)
+{
+	int				i;
+	t_stack_data	stk;
+	
+	if(get_stack_data(*data, stack, &stk) == ERR)
+		return (-1);
 	i = 0;
-	while (i < data->size_a - 1)
+	while (i < stk.len - 1)
 	{
-		if(data->stack[i] > data->stack[i + 1])
+		if(stack == STACK_A)
 		{
-			display_stack(data, STACK_A);
-			return (0);
+			if(*(stk.arr) > *(stk.arr + 1))
+				return (0);
+			stk.arr++;
+		}
+		else if (stack == STACK_B)
+		{
+			if(*(stk.arr) > *(stk.arr - 1))
+				return (0);
+			stk.arr--;
 		}
 		i++;
 	}
 	return (1);
 }
-int *get_smalest_value(t_global_data *data, int stack)
-{
-	int *arr;
-	int *p1;
-	int i = INT_MAX;
 
-	p1 = &i;
-	if (stack == STACK_A)
-	{
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if(*arr < *p1)
-				p1 = arr;
-			arr++;
-		}
-	}
-	else if(stack == STACK_B)
-	{
-		arr = data->b;
-
-		
-		while (arr >= data->start)
-		{
-			if(*arr < *p1)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
-}
 
 int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
 {
@@ -129,33 +111,11 @@ int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
 	return (OK);
 }
 
+/*
 
-int	min_at_beginning(t_global_data *data, int stack)
-{
-	long	left;
-	long	right;
-	int		*smalest;
+    rotate -> the last become the first
+    rev_rotate <- the first become the last
+*/
 
-	smalest = get_smalest_value(data, stack);
-	left = (((long)data->start - (long)smalest) / 4);
-	right = (((long)data->end - (long)smalest) / sizeof(int)) + 1;
-	if (smalest == data->start)
-		return(OK);
-	if (left < 0)
-		left = left *-1;
-	if (right < 0)
-		right = right *-1;
-	if (left > right || left == right)
-		while (right > 0)
-		{
-			rotate(data, stack, DISPLAY);
-			right--;
-		}
-	else if(right > left)
-		while (left > 0)
-		{
-			rev_rotate(data, stack, DISPLAY);
-			left--;
-		}
-	return (OK);
-}
+
+
