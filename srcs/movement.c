@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 18:49:43 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 11:43:59 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int swap(t_global_data *data, int stack, int mode)
 
 	if (!data || get_stack_data(*data, stack, &stk) == ERR)
 		return (NO_MOVE);
-	
 	if (!stk.arr && stk.len < 1)
 		return (NO_MOVE);
 	if (stack == STACK_A)

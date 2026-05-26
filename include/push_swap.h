@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 11:09:52 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:57:24 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 #define DISPLAY 0
 #define NO_DISPLAY 1
 #define NL printf("\n")
+#define LEFT 0
+#define RIGHT 1
 
 enum e_algo
 {
@@ -81,8 +83,8 @@ int double_rotation(t_global_data *data, int move, int mode);
 
 /* algo */
 
-void tree_values(t_global_data *data);
-void five_values(t_global_data *data);
+int tree_values(t_global_data *data, int stack);
+void five_values(t_global_data *data, int stk_src, int stk_dst);
 int ft_buble_sort_push(t_global_data *data);
 
 /* utils */
@@ -94,7 +96,7 @@ void    print_move(int move, int stack);
 float   compute_disorder(t_global_data *data);
 void    put_float(float nb);
 int     get_complexity(char *arg);
-int     ft_is_sort(t_global_data *data);
+int     ft_is_sort(t_global_data *data, int stack);
 int     *get_smalest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 int     min_at_beginning(t_global_data *data, int stack);
