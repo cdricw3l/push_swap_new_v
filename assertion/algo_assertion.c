@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 14:18:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:03:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,22 +196,22 @@ void min_at_beg_asser(void)
     // free(data.stack);
 
 
-    char *l6[] = {"10 -1 32 45 7 89 -23 56 0", NULL};
+    char *l6[] = {"10 -1 32 45 7 -788", NULL};
     assert(init_global_data(l6, &data) == OK);
     while (data.size_a != 0)
-        push(&data, STACK_A, STACK_B, NO_DISPLAY);
-    while (data.b != 0)
     {
-        display_stack(&data, STACK_B);
+        smallest = *get_smalest_value(&data, STACK_A);
+        min_at_beginning(&data, STACK_A);
+        push(&data, STACK_A, STACK_B, NO_DISPLAY);
+        assert(smallest == *data.b);
+    }
+    while (data.size_b != 0)
+    {
         smallest = *get_smalest_value(&data, STACK_B);
         min_at_beginning(&data, STACK_B);
-        display_stack(&data, STACK_B);
-        NL;
-        assert(smallest == *data.b);
         push(&data, STACK_B, STACK_A, NO_DISPLAY);
+        assert(smallest == *data.a);
     }
-    
-
     ASSERT_END(__func__);
 }
 

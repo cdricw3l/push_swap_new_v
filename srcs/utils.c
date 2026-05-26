@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/26 14:29:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:03:48 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ int *get_smalest_value(t_global_data *data, int stack)
 	else if(stack == STACK_B)
 	{
 		arr = data->b;
-
-		
 		while (arr >= data->start)
 		{
 			if(*arr < *p1)
@@ -146,7 +144,6 @@ int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
     rotate -> the last become the first
     rev_rotate <- the first become the last
 */
-
 int	min_at_beginning(t_global_data *data, int stack)
 {
 	long	left;
@@ -154,27 +151,26 @@ int	min_at_beginning(t_global_data *data, int stack)
 	int		*smalest;
 
 	smalest = get_smalest_value(data, stack);
-
 	if (stack == STACK_A)
 	{
 		left = (((long)data->a - (long)smalest) / 4);
-		right = (((long)&data->a[data->size_a - 1] - (long)smalest) / sizeof(int)) + 1;
+		right = (((long)(data->a + (data->size_a - 1)) - (long)smalest) / sizeof(int)) + 1;
+		if (smalest == data->b)
+			return(NO_MOVE);
 	}
-	else if(stack == STACK_B)
+	else if (stack == STACK_B)
 	{
 		left = (((long)data->b - (long)smalest) / 4);
-		right = (((long)&data->b[data->size_b - 1] - (long)smalest) / sizeof(int)) + 1;
+		right = (((long)(data->b - (data->size_b - 1)) - (long)smalest) / sizeof(int)) + 1;
+		if (smalest == data->b)
+			return(NO_MOVE);
 	}
-	
-	if (smalest == data->start)
-		return(NO_MOVE);
+	else
+		return (NO_MOVE);
 	if (left < 0)
 		left = left *-1;
 	if (right < 0)
 		right = right *-1;
-
-	printf("voici smalest %d\n", *smalest);
-	printf("voici left: %ld et right %ld\n", left, right);
 	if (left > right || left == right)
 		while (right > 0)
 		{
