@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 15:42:39 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:10:58 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
     case 5: 5 4 3
 */
 
-void tree_value_assert(void)
+void three_value_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
@@ -43,8 +43,8 @@ void tree_value_assert(void)
     data.start = &arr1[0];
     data.end = &arr1[5];
     
-    assert(tree_values(&data, STACK_A) == NO_MOVE);
-    assert(tree_values(&data, STACK_B) == NO_MOVE);
+    assert(three_values(&data, STACK_A) == NO_MOVE);
+    assert(three_values(&data, STACK_B) == NO_MOVE);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -58,8 +58,8 @@ void tree_value_assert(void)
     data.start = &arr2[0];
     data.end = &arr2[5];
 
-    assert(tree_values(&data, STACK_A) == OK);
-    assert(tree_values(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -74,8 +74,8 @@ void tree_value_assert(void)
     data.start = &arr3[0];
     data.end = &arr3[5];
 
-    assert(tree_values(&data, STACK_A) == OK);
-    assert(tree_values(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -91,8 +91,8 @@ void tree_value_assert(void)
     data.start = &arr4[0];
     data.end = &arr4[5];
 
-    assert(tree_values(&data, STACK_A) == OK);
-    assert(tree_values(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -108,8 +108,8 @@ void tree_value_assert(void)
     data.start = &arr5[0];
     data.end = &arr5[5];
 
-    assert(tree_values(&data, STACK_A) == OK);
-    assert(tree_values(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -125,8 +125,8 @@ void tree_value_assert(void)
     data.start = &arr6[0];
     data.end = &arr6[5];
 
-    assert(tree_values(&data, STACK_A) == OK);
-    assert(tree_values(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -219,6 +219,6 @@ void algo_assert(char **argv)
 {
     (void)argv;
     min_at_beg_asser();
-    // tree_value_assert();
-    // five_value_assert(argv);
+    three_value_assert();
+    five_value_assert(argv);
 }   

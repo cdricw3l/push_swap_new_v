@@ -6,11 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 09:03:20 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:52:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /* float precision ajustement. Work with put_float */
 static int	float_precision_ajustement(int n)

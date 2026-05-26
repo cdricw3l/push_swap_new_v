@@ -2,25 +2,27 @@ NAME=push_swap
 NAME_ASSER=assertion/push_swap_assert
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror -g
-SRCS= 	srcs/check_and_init.c \
-		srcs/movement.c \
-		srcs/utils_1.c \
-		srcs/min_at_beginning.c \
-		srcs/main.c \
-		srcs/display.c \
-		srcs/debbuging.c \
-		srcs/algo.c 
+SRCS= 	srcs/main.c \
+		srcs/check_and_init.c \
+		srcs/move/movement.c \
+		srcs/utils/utils_1.c \
+		srcs/utils/min_at_beginning.c \
+		srcs/utils/display.c \
+		srcs/utils/debbuging.c \
+		srcs/algo/three.c \
+		srcs/algo/five.c
 SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/algo_assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
 				srcs/check_and_init.c \
-				srcs/movement.c \
-				srcs/utils_1.c \
-				srcs/min_at_beginning.c \
-				srcs/algo.c \
-				srcs/display.c \
-				srcs/debbuging.c
+				srcs/move/movement.c \
+				srcs/utils/utils_1.c \
+				srcs/utils/min_at_beginning.c \
+				srcs/utils/debbuging.c \
+				srcs/utils/display.c \
+				srcs/algo/three.c \
+				srcs/algo/five.c
 
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
