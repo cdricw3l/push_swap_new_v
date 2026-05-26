@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 20:28:08 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 11:09:52 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,15 @@ int     ft_is_sort(t_global_data *data);
 int     *get_smalest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 int     min_at_beginning(t_global_data *data, int stack);
+
+/* check_init */
+
+int check_digit(char *str);
+int	check_args(char **argv, t_global_data *data);
+int	create_stack(char **argv, t_global_data *data);
+int	check_duplicate(t_global_data *data);
+int	init_global_data(char **argv, t_global_data *data);
+int selection_sort(t_global_data *data);
 
 #endif
 
