@@ -6,12 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 16:10:58 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 17:48:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
 
+int place_int_stack(t_global_data *data, int stack, int value);
 /*
 
     rotate -> the last become the first
@@ -215,10 +216,53 @@ void min_at_beg_asser(void)
     ASSERT_END(__func__);
 }
 
+void place_in_stack_assert(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_global_data data;
+    int arr5[6] = {5 ,4 ,6, 3, 1, 2};
+    
+    data.a = &arr5[3];
+    data.b = &arr5[2];
+    data.size_a = 3;
+    data.size_b = 3;
+    data.start = &arr5[0];
+    data.end = &arr5[5];
+    
+    assert(place_int_stack(&data, STACK_A, *(data.a)) == 3);
+    assert(place_int_stack(&data, STACK_A, *(data.a + 1)) == 1);
+    assert(place_int_stack(&data, STACK_A, *(data.a + 2)) == 2);
+
+    assert(place_int_stack(&data, STACK_B, *(data.b)) == 3);
+    assert(place_int_stack(&data, STACK_B, *(data.b - 1)) == 1);
+    assert(place_int_stack(&data, STACK_B, *(data.b - 2)) == 2);
+
+    int arr6[9] = {50, 78, 7, -125 ,40 , -6, 310, 1, 2};
+    data.a = &arr6[4];
+    data.b = &arr6[3];
+    data.size_a = 5;
+    data.size_b = 4;
+    data.start = &arr6[0];
+    data.end = &arr6[8];
+    assert(place_int_stack(&data, STACK_A, *(data.a)) == 4);
+    assert(place_int_stack(&data, STACK_A, *(data.a + 1)) == 1);
+    assert(place_int_stack(&data, STACK_A, *(data.a + 2)) == 5);
+    assert(place_int_stack(&data, STACK_A, *(data.a + 3)) == 2);
+    assert(place_int_stack(&data, STACK_A, *(data.a + 4)) == 3);
+
+    assert(place_int_stack(&data, STACK_B, *(data.b)) == 1);
+    assert(place_int_stack(&data, STACK_B, *(data.b - 1)) == 2);
+    assert(place_int_stack(&data, STACK_B, *(data.b - 2)) == 4);
+    assert(place_int_stack(&data, STACK_B, *(data.b - 3)) == 3);
+
+    ASSERT_END(__func__);
+}
+
 void algo_assert(char **argv)
 {
     (void)argv;
     min_at_beg_asser();
     three_value_assert();
     five_value_assert(argv);
+    place_in_stack_assert();
 }   
