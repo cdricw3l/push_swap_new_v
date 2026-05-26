@@ -6,13 +6,14 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 17:48:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 19:15:20 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
 
 int place_int_stack(t_global_data *data, int stack, int value);
+int *find_best_value(t_global_data data, int range[2]);
 /*
 
     rotate -> the last become the first
@@ -258,11 +259,28 @@ void place_in_stack_assert(void)
     ASSERT_END(__func__);
 }
 
+void find_best_value_of_range_assert(void)
+{
+    int range[2];
+    t_global_data data;
+    
+    //range 1 > 2 6 10 12 20
+    //range 2 > 22 31 54 132 558
+    char *s[] = {"12 10 22  31 558 54 6 2 132 20", NULL};
+    assert(init_global_data(s, &data) == OK);
+    range[0] = 1;
+    range[1] = 5;
+    
+    int *m = find_best_value(data, range);
+    printf("voici la valeur %d et sont adresse %p\n", *m, m);
+}
+
 void algo_assert(char **argv)
 {
     (void)argv;
-    min_at_beg_asser();
-    three_value_assert();
-    five_value_assert(argv);
-    place_in_stack_assert();
+    // min_at_beg_asser();
+    // three_value_assert();
+    // five_value_assert(argv);
+    // place_in_stack_assert();
+    find_best_value_of_range_assert();
 }   

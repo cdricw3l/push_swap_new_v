@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 17:42:12 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 19:07:55 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../lib/libft.h"
+
+#define RED  "\033[0;31m"
+#define YELLOW  "\033[0;33m"
+#define GREEN   "\033[0;32m"
+#define RESET   "\033[0m"
+
+
+#define ASSERT_DEBBUG(line) printf(RED"WE ARE HERE ligne:%d"RESET"\n", line)
 
 #define OK 0
 #define ERR -1
