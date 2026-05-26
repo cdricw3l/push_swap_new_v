@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 15:29:27 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:42:30 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,13 @@ static int get_born(long born[2], t_global_data *data, int stack)
 int	min_at_beginning(t_global_data *data, int stack)
 {
 	long 	born[2];
+	int 	status;
 
-	if(get_born(born, data, stack) == ERR)
+	status = get_born(born, data, stack);
+	if(status == ERR)
 		return (ERR);
+	else if(status == NO_MOVE)
+		return (NO_MOVE);
 	if (born[LEFT] < 0)
 		born[LEFT] = born[LEFT] *-1;
 	if (born[RIGHT] < 0)
