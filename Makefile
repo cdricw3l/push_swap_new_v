@@ -35,7 +35,6 @@ OS=$(shell uname)
 all: $(NAME)
 
 $(NAME): $(SRCS_OBJS)
-	make -C $(LIBFT)
 	$(CC) $(CFLAGS) $(SRCS_OBJS) -Llib -lft -o $(NAME)
 
 
@@ -46,7 +45,6 @@ L100="12 5 4 3 2"
 ARG=$(L100)
 
 as: $(ASSERT_OBJS)
-	@make -C $(LIBFT)
 	$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llib -lft -o $(NAME_ASSER)
 ifeq ($(shell uname), Darwin)
 #/* @leaks -q  -atExit -- 
@@ -78,7 +76,6 @@ clean:
 	rm -rf $(SRCS_OBJS) $(ASSERT_OBJS) $(VALGRIND_LOG) $(LLDB_OBJS)
 
 fclean: clean
-	make fclean -C $(LIBFT)
 	rm -rf $(NAME) $(NAME_ASSER) lldb_training/lldb_test 
 
 re: fclean $(NAME)
