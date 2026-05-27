@@ -11,7 +11,8 @@ SRCS= 	srcs/main.c \
 		srcs/utils/debbuging.c \
 		srcs/algo/three.c \
 		srcs/algo/five.c \
-		srcs/algo/On√n.c 
+		srcs/algo/On√n.c \
+		srcs/algo/sorting_values.c 
 SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/algo_assertion.c \
 				assertion/init_and_check_assertions.c \
