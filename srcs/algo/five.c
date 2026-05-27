@@ -6,35 +6,35 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:32:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 12:46:04 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 13:55:24 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	five_values(t_global_data *data, int stk_src, int stk_dst)
+void	five_values(t_global_data *data, int stack)
 {
-	if (ft_is_sort(data, stk_src))
+	if (ft_is_sort(data, stack))
 		return ;
-	if(stk_src == STACK_A && stk_dst == STACK_B)
+	if(stack == STACK_A)
 	{
-		at_beginning(data, stk_src, smalest_value);
-		push(data, stk_src, stk_dst, DISPLAY);
-		at_beginning(data, stk_src, smalest_value);
-		push(data, stk_src, stk_dst, DISPLAY);
-		three_values_stack_A(data, stk_src);
-		push(data, stk_dst, stk_src, DISPLAY);
-		push(data, stk_dst, stk_src, DISPLAY);
+		at_beginning(data, stack, smalest_value);
+		push(data, stack, STACK_B, DISPLAY);
+		at_beginning(data, stack, smalest_value);
+		push(data, stack, STACK_B, DISPLAY);
+		three_values(data, stack);
+		push(data, STACK_B, stack, DISPLAY);
+		push(data, STACK_B, stack, DISPLAY);
 
 	}
-	else if (stk_src == STACK_B && stk_dst == STACK_A)
+	else if (stack == STACK_B)
 	{
-		at_beginning(data, stk_src, bigest_value);
-		push(data, stk_src, stk_dst, DISPLAY);
-		at_beginning(data, stk_src, bigest_value);
-		push(data, stk_src, stk_dst, DISPLAY);
-		three_values_stack_A(data, stk_src);
-		push(data, stk_dst, stk_src, DISPLAY);
-		push(data, stk_dst, stk_src, DISPLAY);
+		at_beginning(data, stack, bigest_value);
+		push(data, stack, STACK_A, DISPLAY);
+		at_beginning(data, stack, bigest_value);
+		push(data, stack, STACK_A, DISPLAY);
+		three_values(data, stack);
+		push(data, STACK_A, STACK_B, DISPLAY);
+		push(data, STACK_A, STACK_B, DISPLAY);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 13:32:05 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:05:16 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,31 @@ void three_value_assert(void)
     t_global_data data;
 
     /* case 0 */
-    // int arr0[6] = {1, 2, 3, 4, 5, 6};
+    int arr0[6] = {1, 2, 3, 4, 5, 6};
     
-    // data.a = &arr0[3];
-    // data.b = &arr0[2];
-    // data.size_a = 3;
-    // data.size_b = 3;
-    // data.start = &arr0[0];
-    // data.end = &arr0[5];
+    data.a = &arr0[3];
+    data.b = &arr0[2];
+    data.size_a = 3;
+    data.size_b = 3;
+    data.start = &arr0[0];
+    data.end = &arr0[5];
     
-    // assert(three_values_stack_A(&data, STACK_A) == NO_MOVE);
-    // assert(three_values_stack_B(&data, STACK_B) == NO_MOVE);
+    assert(three_values(&data, STACK_A) == NO_MOVE);
+    assert(three_values(&data, STACK_B) == NO_MOVE);
     
-    // int arr1[6] = {2, 1, 3, 6, 5, 4};
+    int arr1[6] = {2, 1, 3, 6, 5, 4};
 
-    // data.a = &arr1[3];
-    // data.b = &arr1[2];
-    // data.start = &arr1[0];
-    // data.end = &arr1[5];
+    data.a = &arr1[3];
+    data.b = &arr1[2];
+    data.start = &arr1[0];
+    data.end = &arr1[5];
 
-    // display_stack(&data, STACK_B);
-    // assert(three_values_stack_A(&data, STACK_A) == OK);
-    // assert(three_values_stack_B(&data, STACK_B) == OK);
-    // display_stack(&data, STACK_B);
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
+    display_stack(&data, STACK_B);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
+    display_stack(&data, STACK_B);
+    assert(ft_is_sort(&data, STACK_A));
+    assert(ft_is_sort(&data, STACK_B));
     
     /* case 1 */
     int arr2[6] = {5 ,6 ,4, 1, 3, 2};
@@ -71,8 +71,8 @@ void three_value_assert(void)
     data.start = &arr2[0];
     data.end = &arr2[5];
 
-    assert(three_values_stack_A(&data, STACK_A) == OK);
-    assert(three_values_stack_B(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -87,9 +87,9 @@ void three_value_assert(void)
     data.start = &arr3[0];
     data.end = &arr3[5];
 
-    assert(three_values_stack_A(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_A) == OK);
 
-    assert(three_values_stack_B(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -105,11 +105,11 @@ void three_value_assert(void)
     data.start = &arr4[0];
     data.end = &arr4[5];
 
-    assert(three_values_stack_A(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_A) == OK);
     display_stack(&data, STACK_B);
-    three_values_stack_A(&data, STACK_B);
+    three_values(&data, STACK_B);
     display_stack(&data, STACK_B);
-    //assert(three_values_stack_A(&data, STACK_B) == OK);
+    //assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -125,8 +125,8 @@ void three_value_assert(void)
     data.start = &arr5[0];
     data.end = &arr5[5];
 
-    assert(three_values_stack_A(&data, STACK_A) == OK);
-    assert(three_values_stack_A(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -142,8 +142,8 @@ void three_value_assert(void)
     data.start = &arr6[0];
     data.end = &arr6[5];
 
-    assert(three_values_stack_A(&data, STACK_A) == OK);
-    assert(three_values_stack_A(&data, STACK_B) == OK);
+    assert(three_values(&data, STACK_A) == OK);
+    assert(three_values(&data, STACK_B) == NO_MOVE);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
@@ -158,14 +158,13 @@ void five_value_assert()
     char *l1[] = {"10 5 -2 4001 311", NULL};
     char *l2[] = {"10 5 -2 4001 311", NULL};
     assert(init_global_data(l1, &data) == OK);
-    five_values(&data, STACK_A, STACK_B);
+    five_values(&data, STACK_A);
     assert(ft_is_sort(&data, STACK_A));
     
     assert(init_global_data(l2, &data) == OK);
     while (data.a)
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
-    five_values(&data, STACK_B, STACK_A);
-    display_stack(&data, STACK_B);
+    five_values(&data, STACK_B);
     assert(ft_is_sort(&data, STACK_B));
     ASSERT_END(__func__);
 }
@@ -302,8 +301,12 @@ void min_at_beg_asser(void)
     while (data.b)
     {
         smallest = *smalest_value(&data, STACK_B);
+        printf("voici smalest %d\n", smallest);
+        display_stack(&data, STACK_B);
         at_beginning(&data, STACK_B, smalest_value);
+        display_stack(&data, STACK_B);
         push(&data, STACK_B, STACK_A, NO_DISPLAY);
+        printf("voici %d\n", *data.a);
         assert(smallest == *data.a);
     }
     ASSERT_END(__func__);
@@ -378,7 +381,7 @@ void find_best_value_of_range_assert(void)
         push(&data, STACK_A, STACK_B, DISPLAY);
         if(data.size_b == range[1])
         {
-            five_values(&data, STACK_B, STACK_A);
+            five_values(&data, STACK_B);
             range[0] += 5;
             range[1] += 5;
         }
@@ -389,10 +392,10 @@ void find_best_value_of_range_assert(void)
 void algo_assert(char **argv)
 {
     (void)argv;
-    // min_at_beg_asser();
-    // max_at_beg_asser();
+    min_at_beg_asser();
+    max_at_beg_asser();
     three_value_assert();
-    //five_value_assert();
-    // place_in_stack_assert();
-    // find_best_value_of_range_assert();
+    five_value_assert();
+    place_in_stack_assert();
+    find_best_value_of_range_assert();
 }   

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 12:37:57 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:04:49 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void middle_rank(t_global_data *data)
             push(data, STACK_A, STACK_B, DISPLAY);
         }
         display_stack(data, STACK_B);
-        five_values(data,STACK_B, STACK_A);
+        five_values(data,STACK_B);
         display_stack(data, STACK_B);
         assert(1 == 2);
 

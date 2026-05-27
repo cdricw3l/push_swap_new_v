@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 13:08:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:01:09 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,10 @@ int rev_rotate(t_global_data *data, int stack, int mode)
 	}
 	else if (stack == STACK_B && data->b)
 	{
-		tmp = *(data->b);
-		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
-		*(data->b - (data->size_b  - 1)) = tmp;
+		tmp = *(data->b - (data->size_b - 1));
+		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
+		*(data->b) = tmp;
 	}
-	
 	if(mode == DISPLAY)
 		print_move(RV, stack);
 	return (OK);    
@@ -98,10 +97,11 @@ int rotate(t_global_data *data, int stack, int mode)
 	}
 	else if (stack == STACK_B && data->b)
 	{
-		tmp = *(data->b - (data->size_b - 1));
-		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
-		*(data->b) = tmp;
+		tmp = *(data->b);
+		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
+		*(data->b - (data->size_b  - 1)) = tmp;
 	}
+	
 	if(mode == DISPLAY)
 		print_move(R, stack);
 	return (OK);    
