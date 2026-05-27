@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 09:44:49 by mabrugge          #+#    #+#             */
-/*   Updated: 2026/05/27 10:42:23 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/05/27 11:02:30 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int selection_sort(t_global_data *data)
     while(data->size_a > 3)
     {
         at_beginning(data, STACK_A, smalest_value);
-        push(data, STACK_A, STACK_B, NO_DISPLAY);
+        push(data, STACK_A, STACK_B, DISPLAY);
     }
     three_values(data, STACK_A);
     while(data->b)
