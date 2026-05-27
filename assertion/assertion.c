@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/25 13:27:06 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 17:42:21 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
     (void)argc;
     char buffer[3];
-    char intro[] = "Witch test yould you want to launch:\n["GREEN"0"RESET"] = init_and_check_assertion\n["GREEN"1"RESET"] = move_assertion\n["GREEN"2"RESET"] = algo_assertion\ninput: ";
+    char intro[] = "Witch test yould you want to launch:\n["GREEN"0"RESET"] = init_and_check_assertion\n["GREEN"1"RESET"] = move_assertion\n["GREEN"2"RESET"] = algo_assertion\n["GREEN"3"RESET"] = middle_algo_assertion\ninput: ";
     int b_read;
 
     write(STDOUT_FILENO, intro, ft_strlen(intro));
@@ -33,6 +33,8 @@ int main(int argc, char **argv)
         move_assertions(argc, argv);
     else if(!ft_strncmp("2", buffer, 2))
         algo_assert(argv);
+    else if(!ft_strncmp("3", buffer, 2))
+        middle_algo_assert();
 
     return (0);
 }

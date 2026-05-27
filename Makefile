@@ -17,6 +17,7 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/algo_assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
+				assertion/On√n_assertion.c \
 				srcs/initialisation/check_and_init.c \
 				srcs/move/movement.c \
 				srcs/move/at_beginning.c \
@@ -46,7 +47,8 @@ simple: $(NAME)
 # simple algo #
 ARG_MIDDLE="-1104 -1992 -3941 -2100 -2292 -4265 -228 3405 -515 -1270"
 middle: $(NAME)
-	./push_swap --medium $(ARG_MIDDLE) | ./checker/checker_linux $(ARG_MIDDLE)
+	./push_swap --medium $(ARG_MIDDLE) 
+#| ./checker/checker_linux $(ARG_MIDDLE)
 
 as: $(ASSERT_OBJS)
 	$(CC) $(CFLAGS) $(ASSERT_OBJS) -Llib -lft -o $(NAME_ASSER)

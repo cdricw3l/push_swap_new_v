@@ -25,7 +25,7 @@ int check_duplicate(t_global_data *data);
 int init_global_data(char **argv, t_global_data *data);
 void display_data(t_global_data data);
 
-
 void algo_assert(char **argv);
+void middle_algo_assert(void);
 
 #endif

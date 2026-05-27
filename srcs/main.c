@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/27 16:07:52 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:19:40 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int main(int argc, char **argv)
     else if (data.algo == SIMPLE)
         selection_sort(&data);
     else if (data.algo == MEDIUM)
+    {
         middle_rank(&data);
+        display_stack(&data, STACK_A);
+    }
     return (0);
 }

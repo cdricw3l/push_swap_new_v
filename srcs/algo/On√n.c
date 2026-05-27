@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 16:13:22 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:16:42 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ t_best_move best_move(t_global_data data, int range[2])
     return (best_move);
 }
 
-#define RANGE_SIZE 5
 #include <assert.h>
 
 void middle_rank(t_global_data *data)
@@ -86,12 +85,13 @@ void middle_rank(t_global_data *data)
     int range[2];
     int nb_range;
     t_best_move best;
+    int i;
 
     nb_range = data->size_a / RANGE_SIZE;
     range[1] = (RANGE_SIZE * nb_range);
     range[0] =  (range[1] - RANGE_SIZE) + 1;
-    best_move(*data, range);
-    while (nb_range > 0)
+    i = 0;
+    while (i < nb_range)
     {
         while (data->size_b != RANGE_SIZE)
         {
@@ -104,20 +104,22 @@ void middle_rank(t_global_data *data)
             push(data, STACK_A, STACK_B, DISPLAY);
         }
         five_values(data,STACK_B);
+        
         while (data->b)
             push(data, STACK_B, STACK_A, DISPLAY);
-        int i = 0;
+        
+        int j = 0;
         if(range[0] > 1)
         {
-            while (i < RANGE_SIZE)
+            while (j < RANGE_SIZE)
             {
                 rotate(data, STACK_A, DISPLAY);
-                i++;
+                j++;
             }
         }
+        i++;
         range[1] -= RANGE_SIZE;
         range[0] -= RANGE_SIZE;
-        nb_range--;
     }
     
 }
