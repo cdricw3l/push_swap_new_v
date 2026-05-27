@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:04:49 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 16:13:22 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,9 @@ void middle_rank(t_global_data *data)
     nb_range = data->size_a / RANGE_SIZE;
     range[1] = (RANGE_SIZE * nb_range);
     range[0] =  (range[1] - RANGE_SIZE) + 1;
-    assert(range[1] == 10 && range[0] == 6);
     best_move(*data, range);
     while (nb_range > 0)
     {
-        printf("Range start: %d end: %d\n", range[0], range[1]);
-
         while (data->size_b != RANGE_SIZE)
         {
             best = best_move(*data, range);
@@ -106,11 +103,18 @@ void middle_rank(t_global_data *data)
             }
             push(data, STACK_A, STACK_B, DISPLAY);
         }
-        display_stack(data, STACK_B);
         five_values(data,STACK_B);
-        display_stack(data, STACK_B);
-        assert(1 == 2);
-
+        while (data->b)
+            push(data, STACK_B, STACK_A, DISPLAY);
+        int i = 0;
+        if(range[0] > 1)
+        {
+            while (i < RANGE_SIZE)
+            {
+                rotate(data, STACK_A, DISPLAY);
+                i++;
+            }
+        }
         range[1] -= RANGE_SIZE;
         range[0] -= RANGE_SIZE;
         nb_range--;
