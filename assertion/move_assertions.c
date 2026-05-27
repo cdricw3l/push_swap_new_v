@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:46:58 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:37:42 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void rotate_short_assert(void)
         tmp = *data.a;
         assert(rotate(&data, STACK_A, NO_DISPLAY) == OK);
         display_stack(&data, STACK_A);
-        assert(*(data.a + 1) == tmp);
+        assert(*(data.a + (data.size_a - 1)) == tmp);
         i++;
     }
     NL;
@@ -119,7 +119,7 @@ void rotate_short_assert(void)
         tmp = *data.b;
         assert(rotate(&data, STACK_B, NO_DISPLAY) == OK);
         display_stack(&data, STACK_B);
-        assert(*(data.b - 1) == tmp);
+        assert(*(data.b - (data.size_b - 1)) == tmp);
         i++;
     }
     assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
@@ -152,7 +152,7 @@ void rev_rotate_short_assert(void)
     {
         tmp = *(data.a);
         rev_rotate(&data,  STACK_A, NO_DISPLAY);
-        assert(*(data.a +  (data.size_a - 1)) == tmp);
+        assert(*(data.a +  1) == tmp);
         i++;
     }
     assert(*data.a == 7 && *(data.a + 1) == 12 && *(data.a + 2) == 32);
@@ -161,7 +161,7 @@ void rev_rotate_short_assert(void)
     {
         tmp = *(data.b);
         rev_rotate(&data,  STACK_B, NO_DISPLAY);
-        assert(*(data.b - (data.size_b - 1)) == tmp);
+        assert(*(data.b - 1) == tmp);
         i++;
     }
     assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
@@ -277,8 +277,8 @@ void double_rotation_assert(void)
     
     /* check for single rotation */
     assert(double_rotation(&data, RR, NO_DISPLAY) == OK);
-    assert(*(data.a + 1) == first_el_a);
-    assert(*(data.b - 1) == first_el_b);
+    assert(*(data.a + (data.size_a - 1)) == first_el_a);
+    assert(*(data.b - (data.size_b - 1)) == first_el_b);
     /* check for single rev_rotation */
     assert(double_rotation(&data, RRR, NO_DISPLAY) == OK);
     assert(*(data.a) == first_el_a);

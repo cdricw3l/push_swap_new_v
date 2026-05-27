@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:31:22 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:42:15 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:45:52 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ static int	three_values_stack_A(t_global_data *data, int stack)
 	if (idx[0] < idx[1] && idx[0] < idx[2])
 	{
 		swap(data, stack, DISPLAY);
-		rev_rotate(data, stack, DISPLAY);
+		rotate(data, stack, DISPLAY);
 	}
 	else if (idx[0] > idx[1] && idx[1] > idx[2])
 	{
 		swap(data, stack, DISPLAY);
-		rotate(data, stack, DISPLAY);
+		rev_rotate(data, stack, DISPLAY);
 	}
 	else if (idx[0] > idx[1] && idx[0] < idx[2])
 		swap(data, stack, DISPLAY);
 	else if (idx[0] < idx[1] && idx[1] > idx[2])
-		rotate(data, stack, DISPLAY);
-	else if (idx[0] > idx[1] && idx[0] > idx[2])
 		rev_rotate(data, stack, DISPLAY);
+	else if (idx[0] > idx[1] && idx[0] > idx[2])
+		rotate(data, stack, DISPLAY);
 	return (OK);
 }
 static int	three_values_stack_B(t_global_data *data, int stack)
@@ -74,17 +74,17 @@ static int	three_values_stack_B(t_global_data *data, int stack)
 	if (idx[0] < idx[1] && idx[1] < idx[2])
 	{
 		swap(data, stack, DISPLAY);
-		rotate(data, stack, DISPLAY);
+		rev_rotate(data, stack, DISPLAY);
 	}
 	else if (idx[0] > idx[1] && idx[0] > idx[2])
 	{
 		swap(data, stack, DISPLAY);
-		rev_rotate(data, stack, DISPLAY);
+		rotate(data, stack, DISPLAY);
 	}
 	else if (idx[0] < idx[1] && idx[0] < idx[2])
-		rev_rotate(data, stack, DISPLAY);
-	else if (idx[0] > idx[1] && idx[1] < idx[2])
 		rotate(data, stack, DISPLAY);
+	else if (idx[0] > idx[1] && idx[1] < idx[2])
+		rev_rotate(data, stack, DISPLAY);
 	else if (idx[0] < idx[1] && idx[1] > idx[2])
 		swap(data, stack, DISPLAY);
 	return (OK);

@@ -41,7 +41,7 @@ $(NAME): $(SRCS_OBJS)
 # simple algo #
 ARG_SIMPLE="-126 -717 -1185 -2219 -2402 -2471 -1055 -3238 -3994 631"
 simple: $(NAME)
-	@./push_swap --simple $(ARG_SIMPLE) | ./checker/checker_linux $(ARG_SIMPLE)
+	./push_swap --simple $(ARG_SIMPLE) | ./checker/checker_linux $(ARG_SIMPLE)
 
 # simple algo #
 ARG_SIMPLE="-126 -717 -1185 -2219 -2402 -2471 -1055 -3238 -3994 631"

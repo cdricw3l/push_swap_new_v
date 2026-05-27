@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:35:19 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:34:54 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int swap(t_global_data *data, int stack, int mode)
 	return (OK);
 }
 
-int rev_rotate(t_global_data *data, int stack, int mode)
+int rotate(t_global_data *data, int stack, int mode)
 {
 	int tmp;
 
@@ -80,11 +80,11 @@ int rev_rotate(t_global_data *data, int stack, int mode)
 	}
 	
 	if(mode == DISPLAY)
-		print_move(RV, stack);
+		print_move(R, stack);
 	return (OK);    
 }
 
-int rotate(t_global_data *data, int stack, int mode)
+int rev_rotate(t_global_data *data, int stack, int mode)
 {
 	int tmp;
 
@@ -104,7 +104,7 @@ int rotate(t_global_data *data, int stack, int mode)
 	}
 	
 	if(mode == DISPLAY)
-		print_move(R, stack);
+		print_move(RV, stack);
 	return (OK);    
 }
 
