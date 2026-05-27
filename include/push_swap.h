@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 10:03:47 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 11:15:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ typedef struct s_best_move
     rotate -> the last become the first
     rev_rotate <- the first become the last
 */
+
+
+/* initialisation */
+
+int	init_global_data(char **argv, t_global_data *data);
 
 /* movement */
 
