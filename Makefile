@@ -5,8 +5,8 @@ CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/main.c \
 		srcs/initialisation/check_and_init.c \
 		srcs/move/movement.c \
+		srcs/move/at_beginning.c \
 		srcs/utils/utils_1.c \
-		srcs/utils/min_at_beginning.c \
 		srcs/utils/display.c \
 		srcs/utils/debbuging.c \
 		srcs/algo/three.c \
@@ -18,9 +18,8 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/move_assertions.c \
 				srcs/initialisation/check_and_init.c \
 				srcs/move/movement.c \
+				srcs/move/at_beginning.c \
 				srcs/utils/utils_1.c \
-				srcs/utils/min_at_beginning.c \
-				srcs/utils/max_at_beginning.c \
 				srcs/utils/debbuging.c \
 				srcs/utils/display.c \
 				srcs/algo/three.c \

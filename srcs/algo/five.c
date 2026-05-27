@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   five.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:32:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 21:29:42 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/27 09:41:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	five_values(t_global_data *data, int stk_src, int stk_dst)
 		return ;
 	if(stk_src == STACK_A && stk_dst == STACK_B)
 	{
-		min_at_beginning(data, stk_src);
+		at_beginning(data, stk_src, get_smalest_value);
 		push(data, stk_src, stk_dst, DISPLAY);
-		min_at_beginning(data, stk_src);
+		at_beginning(data, stk_src, get_smalest_value);
 		push(data, stk_src, stk_dst, DISPLAY);
 		three_values(data, stk_src);
 		push(data, stk_dst, stk_src, DISPLAY);
