@@ -6,12 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:32:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 15:42:01 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 23:43:55 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <assert.h>
 
 void	five_values(t_global_data *data, int stack)
 {

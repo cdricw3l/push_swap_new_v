@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 22:21:29 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 23:35:21 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int     ft_is_sort(t_global_data *data, int stack);
 int     *smalest_value(t_global_data *data, int stack);
 int     *bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
-int     place_int_stack(t_global_data *data, int stack, int value);
+int     place_int_stack(t_global_data *data, int value);
 int	    at_beginning(t_global_data *data, int stack, int *value);
 t_best_move *best_move(t_global_data *data, int range[2]);
 int     generate_range(int ranges[1024][2], int list_size);
