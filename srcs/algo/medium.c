@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 17:39:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 23:16:17 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,88 +14,70 @@
 
 int place_int_stack(t_global_data *data, int stack, int value)
 {
-    t_stack_data    stk;
     int             count;
-    
-    if(get_stack_data(*data, stack, &stk) == ERR)
-        return (ERR);
+    int             *p_start;
+
+    (void) stack;
+    p_start = data->start;
     count = 1;
-    if(stack == STACK_A)
+    while (p_start <= data->end)
     {
-        while (stk.arr <= data->end)
-        {
-            if (*(stk.arr) < value)
-                count++;
-            stk.arr++;
-        }
-    }
-    if(stack == STACK_B)
-    {
-        while (stk.arr >= data->start)
-        {
-            if (*(stk.arr) < value)
-                count++;
-            stk.arr--;
-        }
+        if(*p_start < value)
+            count++;
+        p_start++;
     }
     return(count);
 }
 
 #include <assert.h>
 
-t_best_move *best_move(t_global_data data, int range[2])
+
+
+t_best_move *best_move(t_global_data *data, int range[2])
 {
     t_best_move *best_move;
     int *p_start;
     int *p_end;
     int place;
     
-    p_start = data.a;
-    p_end = data.a + (data.size_a - 1);
+    p_start = data->a;
+    p_end = data->a + (data->size_a - 1);
     best_move = malloc(sizeof(t_best_move));
     if(!best_move)
         return (NULL);
-    while (p_start < (data.a + (data.size_a - 1)))
+    while (p_start < p_end)
     {
-        place = place_int_stack(&data, STACK_A ,*p_start);
+        place = place_int_stack(data, STACK_A ,*p_start);
         if(place >= range[0] && place <= range[1])
-        {
             break;
-        }
         p_start++;
     }
-
-    if (p_start == (data.a + (data.size_a - 1)))
-        return (NULL);
-    while (p_end >= data.a)
+    
+    while (p_end >= data->a)
     {
-        place = place_int_stack(&data, STACK_A ,*p_end);
-        // printf(GREEN"svalue %d in range: %d to %d --> place %d"RESET"\n", *p_end ,range[1], range[0], place);
+        place = place_int_stack(data, STACK_A ,*p_end);
         // assert(place >= range[0] || place >= range[1]);
         if(place >= range[0] && place <= range[1])
-        {
-            
             break;
-        }
         p_end--;
     }
-
     /*   
         check if the best move is to the left or to the right.
     */
-    if(p_start - data.a < (data.a + (data.size_a - 1)  - p_end) + 1)
+    if (p_start > p_end)
+        return (NULL);
+    if(p_start - data->a < (data->a + (data->size_a - 1)  - p_end) + 1 || p_end == p_start)
     {
         best_move->value = *p_start;
-        best_move->number = p_start - data.a;
+        best_move->number = p_start - data->a;
         best_move->move= rotate;
     }
     else
     {
         best_move->value = *p_end;
-        best_move->number = ((data.a + (data.size_a - 1))  - p_end) + 1;
+        best_move->number = ((data->a + (data->size_a - 1))  - p_end) + 1;
         best_move->move= rev_rotate;
     }
-    printf(GREEN"svalue %d in range: %d to %d"RESET"\n", best_move->value ,range[1], range[0]);
 
     return (best_move);
 }

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 17:33:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 17:52:55 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 23:18:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,43 +79,66 @@ void display_range(int ranges[1024][2], int size)
     }
 }
 
+void display_best_move(t_best_move move, int range[2])
+{
+    printf("best move:");
+    if(move.move == rev_rotate)
+        printf("rev_rotate\n");
+    if(move.move == rotate)
+        printf("rotate\n");
+    printf("value: %d\n", move.value);
+    printf("cost: %d\n", move.number);
+    printf("in range %d to %d\n", range[0], range[1]);
+    NL;
+}
+
 void best_move_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
     t_best_move *best;
 
-    char *s[] = {"8 4 2 1 7 14 5 0 11 10 3 19 15 13 20 17 6 18 16 12" , NULL};
+    char *s[] = {"8 4 2 1 7 14 5 11 10 3 19 15 13 20 17 6 18 16 12 9" , NULL};
     assert(init_global_data(s, &data) == OK);
     int range[LIMIT][2];
     int i;
     int nb = generate_range(range, data.size_a);
-    (void)nb;
     i = 0;
     display_range(range, nb);
-    while (i < 2)
+
+    // best = best_move(&data, range[1]);
+    // display_stack(&data, STACK_B);
+    // move(&data, STACK_A,best->move,best->number);
+    // push(&data, STACK_A, STACK_B, NO_DISPLAY);
+    // display_stack(&data, STACK_B);
+    // best = best_move(&data, range[1]);
+    // printf(GREEN"svalue %d in range: %d to %d"RESET"\n", best->value ,range[1][1], range[1][0]);
+
+    // assert(place_int_stack(&data, STACK_A, best->value) >= range[1][0] && place_int_stack(&data, STACK_A, best->value) <= range[1][1]);
+
+    // best = best_move(&data, range[1]);
+
+    while (i < nb)
     {
-        printf("voici le range %d to %d\n", range[i][0], range[i][1]);
-        while((best = best_move(data, range[i])) != NULL)
+        best = best_move(&data, range[i]);
+        while(best != NULL)
         {
-            while (best->number > 0)
-            {
-                best->move(&data, STACK_A, NO_DISPLAY);
-                best->number--;
-            }
+            move(&data, STACK_A, best->move, best->number);
             push(&data, STACK_A, STACK_B, NO_DISPLAY);
-            display_stack(&data, STACK_B);
+            best = best_move(&data, range[i]);
         }
         
-        //five_values(&data, STACK_B);
-        if (i > 0)
-            at_beginning(&data, STACK_A, data.b);
+        five_values(&data, STACK_B);
+
+
+        at_beginning(&data, STACK_A, immediat_superior(&data, STACK_A, data.b));
         
         while (data.b)
             push(&data, STACK_B, STACK_A, NO_DISPLAY);
-        
         i++;
     }
+    display_stack(&data, STACK_B);
+    display_stack(&data, STACK_A);
     ASSERT_END(__func__);
 }
 
