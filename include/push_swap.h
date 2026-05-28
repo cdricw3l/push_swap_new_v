@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 17:55:47 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 10:10:08 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 #define ASSERT_DEBBUG(line) printf(RED"WE ARE HERE ligne:%d"RESET"\n", line)
 
+#define LIMIT 1024
 #define OK 0
 #define ERR -1
 #define SPACE 32
@@ -132,6 +133,7 @@ int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 int     place_int_stack(t_global_data *data, int stack, int value);
 int	    at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int));
 t_best_move best_move(t_global_data data, int range[2]);
+int generate_range(int ranges[1024][2], int list_size);
 #endif
 
 
