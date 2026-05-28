@@ -21,6 +21,7 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
 				assertion/medium_assertion.c \
+				assertion/generate_range_assert.c \
 				srcs/initialisation/check_and_init.c \
 				srcs/move/movement.c \
 				srcs/move/at_beginning.c \
@@ -29,7 +30,7 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				srcs/utils/display.c \
 				srcs/algo/three.c \
 				srcs/algo/five.c \
-				srcs/algo/On√n.c 
+				srcs/algo/medium.c 
 
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
