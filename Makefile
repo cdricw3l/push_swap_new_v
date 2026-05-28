@@ -11,13 +11,16 @@ SRCS= 	srcs/main.c \
 		srcs/utils/debbuging.c \
 		srcs/algo/three.c \
 		srcs/algo/five.c \
-		srcs/algo/On√n.c \
+		srcs/algo/medium.c \
 		srcs/algo/sorting_values.c 
 SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/algo_assertion.c \
+				assertion/3_assert.c \
+				assertion/5_assert.c \
+				assertion/4_assert.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
-				assertion/On√n_assertion.c \
+				assertion/medium_assertion.c \
 				srcs/initialisation/check_and_init.c \
 				srcs/move/movement.c \
 				srcs/move/at_beginning.c \
@@ -45,7 +48,7 @@ simple: $(NAME)
 	./push_swap --simple $(ARG_SIMPLE) | ./checker/checker_linux $(ARG_SIMPLE)
 
 # simple algo #
-ARG_MIDDLE="-1104 -1992 -3941 -2100 -2292 -4265 -228 3405 -515 -1270"
+ARG_MIDDLE="8 4 2 1 7 14 5 0 11 10 3 19 15 13 20 17 6 18 16 12"
 middle: $(NAME)
 	./push_swap --medium $(ARG_MIDDLE) 
 #| ./checker/checker_linux $(ARG_MIDDLE)

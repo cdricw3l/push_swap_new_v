@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   five.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:32:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 13:55:24 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:58:05 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+#include <assert.h>
 
 void	five_values(t_global_data *data, int stack)
 {

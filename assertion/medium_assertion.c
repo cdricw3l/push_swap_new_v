@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   On√n_assertion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 17:33:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 18:00:29 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:54:11 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,25 @@ void best_move_assert(void)
 
 }
 
+void five_value_in_full_stack(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_global_data data;
+    char *str[] = {"1 2 3 4 5 10 9 8 7 6",NULL};
+
+    assert(init_global_data(str, &data) == OK);
+    while (data.a)
+        push(&data, STACK_A, STACK_B, NO_DISPLAY);
+    display_stack(&data, STACK_B);
+    five_values(&data, STACK_B);
+    display_stack(&data, STACK_B);
+    ASSERT_END(__func__);
+
+}
+
 void middle_algo_assert(void)
 {
-    place_in_stack_assert();
+    //place_in_stack_assert();
+    five_value_in_full_stack();
     
 }

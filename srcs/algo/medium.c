@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   On√n.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 18:16:42 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 21:52:53 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,18 @@ void middle_rank(t_global_data *data)
     int nb_range;
     t_best_move best;
     int i;
+    int j ;
 
     nb_range = data->size_a / RANGE_SIZE;
-    range[1] = (RANGE_SIZE * nb_range);
-    range[0] =  (range[1] - RANGE_SIZE) + 1;
-    i = 0;
-    while (i < nb_range)
+    range[0] =  1;
+    range[1] = RANGE_SIZE;
+    i = 1;
+    assert(nb_range == 4);
+    while (i <= 2)
     {
-        while (data->size_b != RANGE_SIZE)
+        
+        printf("Range start: %d range end: %d\n", range[0], range[1]);
+        while (data->size_b < RANGE_SIZE)
         {
             best = best_move(*data, range);
             while (best.number > 0)
@@ -104,22 +108,26 @@ void middle_rank(t_global_data *data)
             push(data, STACK_A, STACK_B, DISPLAY);
         }
         five_values(data,STACK_B);
-        
+        if (i == 1)
+        {
+            display_stack(data, STACK_B);
+            display_stack(data, STACK_A);
+            assert(1 == 2);
+        }
+
         while (data->b)
             push(data, STACK_B, STACK_A, DISPLAY);
         
-        int j = 0;
-        if(range[0] > 1)
+        
+        j = 0;
+        while (j < RANGE_SIZE)
         {
-            while (j < RANGE_SIZE)
-            {
-                rotate(data, STACK_A, DISPLAY);
-                j++;
-            }
+            rotate(data, STACK_A, DISPLAY);
+            j++;
         }
         i++;
-        range[1] -= RANGE_SIZE;
-        range[0] -= RANGE_SIZE;
+        range[1] += RANGE_SIZE;
+        range[0] += RANGE_SIZE;
     }
-    
+    display_stack(data, STACK_A);
 }

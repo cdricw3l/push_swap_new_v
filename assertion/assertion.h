@@ -28,4 +28,8 @@ void display_data(t_global_data data);
 void algo_assert(char **argv);
 void middle_algo_assert(void);
 
+
+void three_value_assert(void);
+void five_value_assert();
+
 #endif
