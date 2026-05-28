@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 14:49:37 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 17:39:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int place_int_stack(t_global_data *data, int stack, int value)
     return(count);
 }
 
+#include <assert.h>
 
 t_best_move *best_move(t_global_data data, int range[2])
 {
@@ -58,18 +59,27 @@ t_best_move *best_move(t_global_data data, int range[2])
     {
         place = place_int_stack(&data, STACK_A ,*p_start);
         if(place >= range[0] && place <= range[1])
+        {
             break;
+        }
         p_start++;
     }
+
     if (p_start == (data.a + (data.size_a - 1)))
         return (NULL);
-    while (p_end > data.a)
+    while (p_end >= data.a)
     {
         place = place_int_stack(&data, STACK_A ,*p_end);
+        // printf(GREEN"svalue %d in range: %d to %d --> place %d"RESET"\n", *p_end ,range[1], range[0], place);
+        // assert(place >= range[0] || place >= range[1]);
         if(place >= range[0] && place <= range[1])
+        {
+            
             break;
+        }
         p_end--;
     }
+
     /*   
         check if the best move is to the left or to the right.
     */
@@ -85,22 +95,14 @@ t_best_move *best_move(t_global_data data, int range[2])
         best_move->number = ((data.a + (data.size_a - 1))  - p_end) + 1;
         best_move->move= rev_rotate;
     }
+    printf(GREEN"svalue %d in range: %d to %d"RESET"\n", best_move->value ,range[1], range[0]);
+
     return (best_move);
 }
 
 #include <assert.h>
 
-void display_range(int ranges[1024][2], int size)
-{
-    int i;
 
-    i = 0;
-    while (i < size)
-    {
-        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][1], ranges[i][0]);
-        i++;
-    }
-}
 
 int medium_rank(t_global_data *data)
 {
@@ -111,7 +113,7 @@ int medium_rank(t_global_data *data)
     nb_range = generate_range(ranges, data->size_a);
     if(nb_range == ERR)
         return (ERR);
-    display_range(ranges, nb_range);
+    //display_range(ranges, nb_range);
 
  
 

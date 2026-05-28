@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 16:27:34 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 17:06:09 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -511,13 +511,13 @@ void move_assertions(int argc, char **argv)
     (void)argc;
     (void)argv;
     
-    // push_assert();
-    // swap_assert();
-    // rotate_short_assert();
-    // rev_rotate_short_assert();
-    // rotate_push_rotate_push_assert();
-    // double_rotation_assert();
-    // min_at_beg_asser();
-    // max_at_beg_asser();
+    push_assert();
+    swap_assert();
+    rotate_short_assert();
+    rev_rotate_short_assert();
+    rotate_push_rotate_push_assert();
+    double_rotation_assert();
+    min_at_beg_asser();
+    max_at_beg_asser();
     immediat_superior_assert();
 }
