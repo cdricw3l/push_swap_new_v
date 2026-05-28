@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 10:16:38 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 16:18:40 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,97 @@ int generate_range(int ranges[1024][2], int total_size)
         i++;
     }
     return (i);
+}
+
+int *bigest_value(t_global_data *data, int stack)
+{
+	int *arr;
+	int *p1;
+	int i = INT_MIN;
+
+	p1 = &i;
+	if (stack == STACK_A)
+	{
+		arr = data->a;
+		while (arr <= data->end)
+		{
+			if(*arr > *p1)
+				p1 = arr;
+			arr++;
+		}
+	}
+	else if(stack == STACK_B)
+	{
+		arr = data->b;
+		while (arr >= data->start)
+		{
+			if(*arr > *p1)
+				p1 = arr;
+			arr--;
+		}
+	}
+	return (p1);
+}
+
+int *smalest_value(t_global_data *data, int stack)
+{
+	int *arr;
+	int *p1;
+	int i = INT_MAX;
+
+	p1 = &i;
+	if (stack == STACK_A)
+	{
+		arr = data->a;
+		while (arr <= data->end)
+		{
+			if(*arr < *p1)
+				p1 = arr;
+			arr++;
+		}
+	}
+	else if(stack == STACK_B)
+	{
+		arr = data->b;
+		while (arr >= data->start)
+		{
+			if(*arr < *p1)
+				p1 = arr;
+			arr--;
+		}
+	}
+	return (p1);
+}
+
+
+int *immediat_superior(t_global_data *data, int stack, int *value)
+{
+	int *arr;
+	int *p1;
+	int i = INT_MAX;
+
+	p1 = &i;
+	if (bigest_value(data, stack) == value)
+		return (value);
+	if (stack == STACK_A)
+	{
+		arr = data->a;
+		while (arr <= data->end)
+		{
+			if(*arr < *p1 && *arr > *value)
+				p1 = arr;
+			arr++;
+		}
+	}
+	else if(stack == STACK_B)
+	{
+		arr = data->b;
+		while (arr >= data->start)
+		{
+			if(*arr < *p1 && *arr > *value)
+				p1 = arr;
+			arr--;
+		}
+	}
+	return (p1);
 }

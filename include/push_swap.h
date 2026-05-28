@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 10:10:08 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 15:57:02 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_stack_data
 typedef struct s_best_move
 {
     int number;
+    int value;
     int (*move)(t_global_data *, int, int);
 
 } t_best_move;
@@ -112,10 +113,10 @@ int double_rotation(t_global_data *data, int move, int mode);
 
 /* algo */
 
-int three_values(t_global_data *data, int stack);
-void five_values(t_global_data *data, int stack);
-int selection_sort(t_global_data *data);
-void    middle_rank(t_global_data *data);
+int     three_values(t_global_data *data, int stack);
+void    five_values(t_global_data *data, int stack);
+int     selection_sort(t_global_data *data);
+int     medium_rank(t_global_data *data);
 
 /* utils */
 
@@ -131,9 +132,11 @@ int     *smalest_value(t_global_data *data, int stack);
 int     *bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 int     place_int_stack(t_global_data *data, int stack, int value);
-int	    at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int));
-t_best_move best_move(t_global_data data, int range[2]);
-int generate_range(int ranges[1024][2], int list_size);
+int	    at_beginning(t_global_data *data, int stack, int *value);
+t_best_move *best_move(t_global_data data, int range[2]);
+int     generate_range(int ranges[1024][2], int list_size);
+int     move(t_global_data *data, int stack, int (f)(t_global_data *, int, int), int counter);
+int *immediat_superior(t_global_data *data, int stack, int *value);
 #endif
 
 

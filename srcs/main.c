@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/28 07:26:22 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/28 10:40:18 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int main(int argc, char **argv)
       five_values(&data, STACK_A);
     else if (data.algo == SIMPLE)
         selection_sort(&data);
-    //middle_rank(&data);
-    
-    // else if (data.algo == MEDIUM)
-    // {
-    // }
+    else if (data.algo == MEDIUM)
+        medium_rank(&data);
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_assertions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 07:48:34 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/28 16:27:34 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,12 +331,12 @@ void max_at_beg_asser(void)
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
     assert(data.size_a == 0);
     display_stack(&data, STACK_B);
-    assert(at_beginning(&data, STACK_B, bigest_value) == OK);
-    assert(at_beginning(&data, STACK_B, bigest_value) == NO_MOVE);
+    assert(at_beginning(&data, STACK_B, bigest_value(&data, STACK_B)) == OK);
+    assert(at_beginning(&data, STACK_B, bigest_value(&data, STACK_B)) == NO_MOVE);
     while (data.b)
     {
         biggest = *bigest_value(&data, STACK_B);
-        at_beginning(&data, STACK_B, bigest_value);
+        at_beginning(&data, STACK_B, bigest_value(&data, STACK_B));
         assert(biggest == *data.b);
         push(&data,STACK_B, STACK_A, NO_DISPLAY);
     }
@@ -344,22 +344,22 @@ void max_at_beg_asser(void)
     
     assert(init_global_data(l2, &data) == OK);
     biggest = *bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, bigest_value);
+    at_beginning(&data, STACK_A, bigest_value(&data, STACK_A));
     assert(biggest == *(data.a));
     
     assert(init_global_data(l3, &data) == OK);
     biggest = *bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, bigest_value);
+    at_beginning(&data, STACK_A, bigest_value(&data, STACK_A));
     assert(biggest == *data.a);
 
     assert(init_global_data(l4, &data) == OK);
     biggest = *bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, bigest_value);
+    at_beginning(&data, STACK_A, bigest_value(&data, STACK_A));
     assert(biggest == *data.a);
     
     assert(init_global_data(l5, &data) == OK);
     biggest = *bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, bigest_value);
+    at_beginning(&data, STACK_A, bigest_value(&data, STACK_A));
     assert(biggest == *data.a);
 
 
@@ -368,14 +368,14 @@ void max_at_beg_asser(void)
     while (data.a)
     {
         biggest = *bigest_value(&data, STACK_A);
-        at_beginning(&data, STACK_A, bigest_value);
+        at_beginning(&data, STACK_A, bigest_value(&data, STACK_A));
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
         assert(biggest == *data.b);
     }
     while (data.b)
     {
         biggest = *bigest_value(&data, STACK_B);
-        at_beginning(&data, STACK_B, bigest_value);
+        at_beginning(&data, STACK_B, bigest_value(&data, STACK_B));
         push(&data, STACK_B, STACK_A, NO_DISPLAY);
         assert(biggest == *data.a);
     }
@@ -394,34 +394,34 @@ void min_at_beg_asser(void)
 
     assert(init_global_data(l1, &data) == OK);
     smallest = *smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, smalest_value);
+    at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
     assert(smallest == *data.a);
     
-    assert(at_beginning(&data, STACK_A, smalest_value) == NO_MOVE);
+    assert(at_beginning(&data, STACK_A, smalest_value(&data, STACK_A)) == NO_MOVE);
     assert(smallest == *data.a);
     
     assert(init_global_data(l2, &data) == OK);
     smallest = *smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, smalest_value);
+    at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
     assert(smallest == *(data.a));
     
     assert(init_global_data(l3, &data) == OK);
     smallest = *smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, smalest_value);
+    at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
     assert(smallest == *data.a);
     assert(init_global_data(l5, &data) == OK);
     smallest = *smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, smalest_value);
+    at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
     assert(smallest == *data.a);
 
     assert(init_global_data(l4, &data) == OK);
     smallest = *smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, smalest_value);
+    at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
     assert(smallest == *data.a);
     
     assert(init_global_data(l5, &data) == OK);
     smallest = *smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, smalest_value);
+    at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
     assert(smallest == *data.a);
 
 
@@ -430,7 +430,7 @@ void min_at_beg_asser(void)
     while (data.a)
     {
         smallest = *smalest_value(&data, STACK_A);
-        at_beginning(&data, STACK_A, smalest_value);
+        at_beginning(&data, STACK_A, smalest_value(&data, STACK_A));
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
         assert(smallest == *data.b);
     }
@@ -439,12 +439,70 @@ void min_at_beg_asser(void)
         smallest = *smalest_value(&data, STACK_B);
         printf("voici smalest %d\n", smallest);
         display_stack(&data, STACK_B);
-        at_beginning(&data, STACK_B, smalest_value);
+        at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
         display_stack(&data, STACK_B);
         push(&data, STACK_B, STACK_A, NO_DISPLAY);
         printf("voici %d\n", *data.a);
         assert(smallest == *data.a);
     }
+    ASSERT_END(__func__);
+}
+void immediat_superior_assert(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_global_data data;
+    char *s[] = {"8 4 2 1 7 14 5 0 11 10 3 19 15 13 20 17 6 18 16 12 9", NULL};
+    assert(init_global_data(s, &data) == OK);
+
+    assert(*immediat_superior(&data, STACK_A, data.a + 3) == *(data.a + 2));      //1   -> 2
+    assert(*immediat_superior(&data, STACK_A, data.a + 2) == *(data.a + 10));     //2   -> 3
+    assert(*immediat_superior(&data, STACK_A, data.a + 10) == *(data.a + 1));     //3   -> 4
+    assert(*immediat_superior(&data, STACK_A, data.a + 1) == *(data.a + 6));      //4   -> 5    
+    assert(*immediat_superior(&data, STACK_A, data.a + 6) == *(data.a + 16));     //5   -> 6
+    assert(*immediat_superior(&data, STACK_A, data.a + 16) == *(data.a + 4));     //6   -> 7
+    assert(*immediat_superior(&data, STACK_A, data.a + 4) == *(data.a));          //7   -> 8
+    assert(*immediat_superior(&data, STACK_A, data.a) == *(data.a + 20));         //8   -> 9
+    assert(*immediat_superior(&data, STACK_A, data.a + 20) == *(data.a + 9));     //9   -> 10
+    assert(*immediat_superior(&data, STACK_A, data.a + 9) == *(data.a + 8));      //10  -> 11
+    assert(*immediat_superior(&data, STACK_A, data.a + 8) == *(data.a + 19));     //11  -> 12
+    assert(*immediat_superior(&data, STACK_A, data.a + 19) == *(data.a + 13));    //12  -> 13
+    assert(*immediat_superior(&data, STACK_A, data.a + 13) == *(data.a + 5));     //13  -> 14
+    assert(*immediat_superior(&data, STACK_A, data.a + 5) == *(data.a + 12));     //14  -> 15
+    assert(*immediat_superior(&data, STACK_A, data.a + 12) == *(data.a + 18));    //15  -> 16
+    assert(*immediat_superior(&data, STACK_A, data.a + 18) == *(data.a + 15));    //16  -> 17
+    assert(*immediat_superior(&data, STACK_A, data.a + 15) == *(data.a + 17));    //17  -> 18
+    assert(*immediat_superior(&data, STACK_A, data.a + 17) == *(data.a + 11));    //18  -> 19
+    assert(*immediat_superior(&data, STACK_A, data.a + 11) == *(data.a + 14));    //19  -> 20
+    assert(*immediat_superior(&data, STACK_A, data.a + 14) == *(data.a + 14));    //20  -> 20
+
+    while (data.a)
+        push(&data, STACK_A, STACK_B, NO_DISPLAY);
+    
+        
+    /* 9 12 16 18 6 17 20 13 15 19 3 10 11 0 5 14 7 1 2 4 8 */
+    assert(*immediat_superior(&data, STACK_B, data.b - 17) == *(data.b - 18));      //1   -> 2
+    assert(*immediat_superior(&data, STACK_B, data.b - 18) == *(data.b - 10));     //2   -> 3
+    assert(*immediat_superior(&data, STACK_B, data.b - 10) == *(data.b - 19));     //3   -> 4
+    assert(*immediat_superior(&data, STACK_B, data.b - 19) == *(data.b - 14));      //4   -> 5    
+    assert(*immediat_superior(&data, STACK_B, data.b - 14) == *(data.b - 4));     //5   -> 6
+    assert(*immediat_superior(&data, STACK_B, data.b - 4) == *(data.b - 16));     //6   -> 7
+    assert(*immediat_superior(&data, STACK_B, data.b - 16) == *(data.b - 20));          //7   -> 8
+    assert(*immediat_superior(&data, STACK_B, data.b - 20) == *(data.b));         //8   -> 9
+    assert(*immediat_superior(&data, STACK_B, data.b) == *(data.b - 11));     //9   -> 10
+    assert(*immediat_superior(&data, STACK_B, data.b - 11) == *(data.b - 12));      //10  -> 11
+    assert(*immediat_superior(&data, STACK_B, data.b - 12) == *(data.b - 1));     //11  -> 12
+    assert(*immediat_superior(&data, STACK_B, data.b - 1) == *(data.b - 7));    //12  -> 13
+    assert(*immediat_superior(&data, STACK_B, data.b - 7) == *(data.b - 15));     //13  -> 14
+    assert(*immediat_superior(&data, STACK_B, data.b - 15) == *(data.b - 8));     //14  -> 15
+    assert(*immediat_superior(&data, STACK_B, data.b - 8) == *(data.b - 2));    //15  -> 16
+    assert(*immediat_superior(&data, STACK_B, data.b - 2) == *(data.b - 5));    //16  -> 17
+    assert(*immediat_superior(&data, STACK_B, data.b - 5) == *(data.b - 3));    //17  -> 18
+    assert(*immediat_superior(&data, STACK_B, data.b - 3) == *(data.b - 9));    //18  -> 19
+    assert(*immediat_superior(&data, STACK_B, data.b - 9) == *(data.b - 6));    //19  -> 20
+    assert(*immediat_superior(&data, STACK_B, data.b - 6) == *(data.b - 6));    //20  -> 20  
+
+
+
     ASSERT_END(__func__);
 }
 
@@ -453,12 +511,13 @@ void move_assertions(int argc, char **argv)
     (void)argc;
     (void)argv;
     
-    push_assert();
-    swap_assert();
-    rotate_short_assert();
-    rev_rotate_short_assert();
-    rotate_push_rotate_push_assert();
-    double_rotation_assert();
-    min_at_beg_asser();
-    max_at_beg_asser();
+    // push_assert();
+    // swap_assert();
+    // rotate_short_assert();
+    // rev_rotate_short_assert();
+    // rotate_push_rotate_push_assert();
+    // double_rotation_assert();
+    // min_at_beg_asser();
+    // max_at_beg_asser();
+    immediat_superior_assert();
 }

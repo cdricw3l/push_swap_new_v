@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   On√n_assertion.c                                   :+:      :+:    :+:   */
+/*   medium_assertion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 17:33:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 19:54:11 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/28 15:08:54 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,40 @@ void place_in_stack_assert(void)
 }
 
 
+
+
 void best_move_assert(void)
 {
-    t_best_move best;
     t_global_data data;
-    int range[2];
-    int nb_range;
-    
-    /*                6   7  4    1   5     2   8    3  4*/
-    char *arr6[] = {"50, 78, 7, -125 ,40 , -6, 310,  1, 2", NULL};
-    
-    assert(init_global_data(arr6, &data) == OK);
+    t_best_move *best;
 
-    nb_range = data.size_a / RANGE_SIZE;
-    range[1] = (RANGE_SIZE * nb_range);
-    range[0] =  (range[1] - RANGE_SIZE) + 1;
-    best = best_move(data, range);
-    assert(range[0] == 6 && range[1] == 10);
-    assert(best.number == 6);
-    assert(best.number == 0);
-    
+    char *s[] = {"8 4 2 1 7 14 5 0 11 10 3 19 15 13 20 17 6 18 16 12" , NULL};
+    assert(init_global_data(s, &data) == OK);
+    int range[LIMIT][2];
+    int i;
 
+    range[0][0] = 16;
+    range[0][1] = 20;
+    i = 0;
+    while((best = best_move(data, range[0])) != NULL)
+    {
+        printf("voici la valeur %d et le nombre de mouve %d\n", best->value, best->number);
+        display_stack(&data, STACK_A);
+        while (best->number > 0)
+        {
+            best->move(&data, STACK_A, NO_DISPLAY);
+            best->number--;
+        }
+        push(&data, STACK_A, STACK_B, NO_DISPLAY);
+    }
+    five_values(&data, STACK_B);
+    while (data.b)
+    {
+        push(&data, STACK_B, STACK_A, NO_DISPLAY);
+
+    }
+    move(&data,STACK_A, rotate, RANGE_SIZE);
+    display_stack(&data, STACK_A);
 }
 
 void five_value_in_full_stack(void)
@@ -97,6 +110,7 @@ void five_value_in_full_stack(void)
 void middle_algo_assert(void)
 {
     //place_in_stack_assert();
-    five_value_in_full_stack();
+    //five_value_in_full_stack();
+    best_move_assert();
     
 }

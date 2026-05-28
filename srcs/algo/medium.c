@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   On√n.c                                             :+:      :+:    :+:   */
+/*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 21:52:53 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/28 14:49:37 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,18 @@ int place_int_stack(t_global_data *data, int stack, int value)
 }
 
 
-t_best_move best_move(t_global_data data, int range[2])
+t_best_move *best_move(t_global_data data, int range[2])
 {
-    t_best_move best_move;
+    t_best_move *best_move;
     int *p_start;
     int *p_end;
     int place;
     
     p_start = data.a;
     p_end = data.a + (data.size_a - 1);
+    best_move = malloc(sizeof(t_best_move));
+    if(!best_move)
+        return (NULL);
     while (p_start < (data.a + (data.size_a - 1)))
     {
         place = place_int_stack(&data, STACK_A ,*p_start);
@@ -58,6 +61,8 @@ t_best_move best_move(t_global_data data, int range[2])
             break;
         p_start++;
     }
+    if (p_start == (data.a + (data.size_a - 1)))
+        return (NULL);
     while (p_end > data.a)
     {
         place = place_int_stack(&data, STACK_A ,*p_end);
@@ -65,69 +70,71 @@ t_best_move best_move(t_global_data data, int range[2])
             break;
         p_end--;
     }
+    /*   
+        check if the best move is to the left or to the right.
+    */
     if(p_start - data.a < (data.a + (data.size_a - 1)  - p_end) + 1)
     {
-        best_move.number = p_start - data.a;
-        best_move.move= rotate;
+        best_move->value = *p_start;
+        best_move->number = p_start - data.a;
+        best_move->move= rotate;
     }
     else
     {
-        best_move.number = (data.a + (data.size_a - 1)  - p_end) + 1;
-        best_move.move= rev_rotate;
+        best_move->value = *p_end;
+        best_move->number = ((data.a + (data.size_a - 1))  - p_end) + 1;
+        best_move->move= rev_rotate;
     }
     return (best_move);
 }
 
 #include <assert.h>
 
-void middle_rank(t_global_data *data)
+void display_range(int ranges[1024][2], int size)
 {
-    int range[2];
-    int nb_range;
-    t_best_move best;
     int i;
-    int j ;
 
-    nb_range = data->size_a / RANGE_SIZE;
-    range[0] =  1;
-    range[1] = RANGE_SIZE;
-    i = 1;
-    assert(nb_range == 4);
-    while (i <= 2)
+    i = 0;
+    while (i < size)
     {
-        
-        printf("Range start: %d range end: %d\n", range[0], range[1]);
-        while (data->size_b < RANGE_SIZE)
-        {
-            best = best_move(*data, range);
-            while (best.number > 0)
-            {
-                best.move(data, STACK_A, DISPLAY);
-                best.number--;
-            }
-            push(data, STACK_A, STACK_B, DISPLAY);
-        }
-        five_values(data,STACK_B);
-        if (i == 1)
-        {
-            display_stack(data, STACK_B);
-            display_stack(data, STACK_A);
-            assert(1 == 2);
-        }
-
-        while (data->b)
-            push(data, STACK_B, STACK_A, DISPLAY);
-        
-        
-        j = 0;
-        while (j < RANGE_SIZE)
-        {
-            rotate(data, STACK_A, DISPLAY);
-            j++;
-        }
+        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][1], ranges[i][0]);
         i++;
-        range[1] += RANGE_SIZE;
-        range[0] += RANGE_SIZE;
     }
-    display_stack(data, STACK_A);
+}
+
+int medium_rank(t_global_data *data)
+{
+    int ranges[LIMIT][2];
+    //int i;
+    int nb_range;
+
+    nb_range = generate_range(ranges, data->size_a);
+    if(nb_range == ERR)
+        return (ERR);
+    display_range(ranges, nb_range);
+
+ 
+
+    // i = 0;
+    // while (i < 1)
+    // {
+    //     int j;
+
+    //     j = 0;
+    //     t_best_move *best;
+    //     ;
+    //     while ((best = best_move(*data, ranges[i])) != NULL)
+    //     {
+    //         printf("range %d: [end]: %d [start] %d\n", i, ranges[i][1], ranges[i][0]);
+    //         while (best->number > 0)
+    //         {
+    //             best->move(data, STACK_A, DISPLAY);
+    //             push(data, STACK_A, STACK_B, DISPLAY);
+    //             best->number--;
+    //         }
+    //     }
+    //     i++;
+    // }
+    // display_stack(data, STACK_B);
+    return (OK);
 }

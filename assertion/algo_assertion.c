@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   algo_assertion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 07:46:39 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/28 15:47:03 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
 
-int         place_int_stack(t_global_data *data, int stack, int value);
-t_best_move best_move(t_global_data data, int range[2]);
+int             place_int_stack(t_global_data *data, int stack, int value);
+t_best_move     *best_move(t_global_data data, int range[2]);
 /*
 
     rotate -> the last become the first
@@ -38,7 +38,7 @@ void find_best_value_of_range_assert(void)
 {
     int range[2];
     t_global_data data;
-    t_best_move best;
+    t_best_move *best;
     
     //range 1 > 2 6 10 12 20
     //range 2 > 22 31 54 132 558
@@ -51,10 +51,10 @@ void find_best_value_of_range_assert(void)
     while (data.a)
     {
         best = best_move(data, range);
-        while (best.number > 0)
+        while (best->number > 0)
         {
-            best.move(&data, STACK_A, DISPLAY);
-            best.number--;
+            best->move(&data, STACK_A, DISPLAY);
+            best->number--;
         }
         push(&data, STACK_A, STACK_B, DISPLAY);
         if(data.size_b == range[1])
