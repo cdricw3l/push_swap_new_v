@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 23:53:10 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 01:00:28 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,32 @@ t_best_move *best_move(t_global_data *data, int range[2])
         best_move->move= rev_rotate;
     }
     return (best_move);
+}
+
+int check_if_range_is_sorted(t_global_data *data, int range[2])
+{
+    int i;
+    int *start;
+    int *end;
+
+    start = data->a;
+    end = data->a + (data->size_a - 1);
+    while (start < end)
+    {
+        if (place_int_stack(data, *start) == range[0])
+        {
+            i = 0;
+            while (start + i < end && i < RANGE_SIZE)
+            {
+                if(start + i > start + (i + 1))
+                    return(0);
+                i++;
+            }
+            return(1);
+        }
+        start++;
+    }
+    
 }
 
 int medium_rank(t_global_data *data)
