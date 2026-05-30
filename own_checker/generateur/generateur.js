@@ -1,9 +1,9 @@
 
+    const process = require('node:process');
+    const fs = require('node:fs');
     // ── State ──
     let genNums = '';   // full space-separated string — ALWAYS full, never truncated
-    let curMode = 'basic';
-    let activeFlags = new Set();
-
+    
     // ── Inversion count O(n log n) ──
     function countInversions(arr) {
       let c = 0;
@@ -61,18 +61,22 @@
     {
       let min = -500;
       let max = 500;
-      let count = 6;
-      let ratio = 0.2;
+      let r_start = 2;
+      let r_end = 500;
+      let ratio = 0.3;
 
-      while(count <= 7)
+      while(r_start <= r_end)
       {
-        let list = generate(min, max, count, ratio);
-        count++;
-        console.log(list)
-
+        let list = generate(min, max, r_start, ratio).concat("\n");
+        fs.writeFile("test_liste.txt", list,{flag:'a'}, err => {
+          if (err) 
+          {
+            console.log("Error")
+            return;
+          }
+        })
+        r_start++;
       }
-
-
     }
     
     
@@ -98,42 +102,5 @@
       genNums = result.join(' ');
       return(genNums)
     }
-
-
-
-    function copyOutput() {
-      if (!genNums) return;
-      navigator.clipboard.writeText(genNums).then(() => {
-        const b = document.getElementById('btn-copy-out');
-        b.classList.add('copied');
-        b.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Copied!';
-        showToast('Sequence copied');
-        setTimeout(() => { b.classList.remove('copied'); b.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/></svg>Copy'; }, 2000);
-      });
-    }
-
-
-
-
-   
-
-    function copyCmd(i) {
-      const cmds = document.getElementById('cmd-preview')._cmds;
-      if (!cmds || !cmds[i]) return;
-      navigator.clipboard.writeText(cmds[i]).then(() => {
-        const b = document.getElementById('ccp-' + i);
-        b.classList.add('copied');
-        b.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Copied!';
-        showToast('Full command copied to clipboard');
-        setTimeout(() => { b.classList.remove('copied'); b.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/></svg>Copy full'; }, 2000);
-      });
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg; t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2200);
-    }
-
 
     multi_generation()

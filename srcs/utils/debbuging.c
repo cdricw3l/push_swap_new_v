@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debbuging.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:47:10 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 16:53:02 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/30 07:45:57 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void display_data(t_global_data data)
     printf("size stack a: %d\n", data.size_a);
     printf("address stack B: %p\n", data.b);
     printf("size stack b: %d\n", data.size_b);
+    display_stack(&data, STACK_A);
 }
 /* just for debbuging. Delete this file for the render */
 

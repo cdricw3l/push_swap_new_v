@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/29 00:20:20 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/30 10:22:36 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	check_duplicate(t_global_data *data)
 {
 	int	i;
 	int	j;
+	char *value;
 
 	i = 0;
 	while (i < data->size_a)
@@ -114,7 +115,13 @@ int	check_duplicate(t_global_data *data)
 		while (j < data->size_a)
 		{
 			if (data->stack[i] == data->stack[j])
+			{
+				value = ft_itoa(data->stack[i]);
+				write(STDOUT_FILENO, "Error dupplicate value: ", 23);
+				ft_putendl_fd(STDOUT_FILENO, value);
+				free(value);
 				return (ERR);
+			}
 			j++;
 		}
 		i++;

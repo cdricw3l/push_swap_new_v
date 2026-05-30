@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 23:59:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/30 08:01:33 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int rotate(t_global_data *data, int stack, int mode)
 
 	if (!data || (stack != STACK_A && stack != STACK_B))
 		return (NO_MOVE);
-	if (stack == STACK_A && data->a)
+	if (stack == STACK_A && data->a && data->size_a > 0)
 	{
 		tmp = *(data->a);
 		ft_memmove(data->a, data->a + 1, (data->size_a - 1) * sizeof(int));
 		*(data->a + (data->size_a - 1)) = tmp;
 	}
-	else if (stack == STACK_B && data->b)
+	else if (stack == STACK_B && data->b && data->size_b > 0)
 	{
 		tmp = *(data->b);
 		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
@@ -90,13 +90,13 @@ int rev_rotate(t_global_data *data, int stack, int mode)
 
 	if (!data || (stack != STACK_A && stack != STACK_B))
 		return (NO_MOVE);
-	if (stack == STACK_A && data->a)
+	if (stack == STACK_A && data->a && data->size_a > 0)
 	{
 		tmp = *(data->a + data->size_a - 1);
 		ft_memmove(data->a + 1, data->a, (data->size_a  - 1) * sizeof(int));
 		*(data->a) = tmp;
 	}
-	else if (stack == STACK_B && data->b)
+	else if (stack == STACK_B && data->b && data->size_a > 0)
 	{
 		tmp = *(data->b - (data->size_b - 1));
 		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
